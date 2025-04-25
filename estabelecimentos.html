@@ -25,7 +25,7 @@
       container.innerHTML = '<p>Carregando...</p>';
 
       try {
-        const res = await fetch('http://localhost:5000/api/estabelecimentos');
+        const res = await fetch('/api/estabelecimentos');
         const data = await res.json();
         container.innerHTML = '';
 
