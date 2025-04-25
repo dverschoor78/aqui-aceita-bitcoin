@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# Script de configuração para o projeto "Aqui aceita Bitcoin?"
+# Script de configuração para o projeto "Aceita Bitcoin?"
 # Este script automatiza a configuração inicial do ambiente de desenvolvimento
 
-echo "=== Configuração do Projeto 'Aqui aceita Bitcoin?' ==="
+echo "=== Configuração do Projeto 'Aceita Bitcoin?' ==="
 echo "Iniciando configuração..."
 
 # Verificar se o Git está instalado
@@ -108,7 +108,7 @@ fi
 
 echo ""
 echo "=== Configuração concluída com sucesso! ==="
-echo "O projeto 'Aqui aceita Bitcoin?' está pronto para uso."
+echo "O projeto 'Aceita Bitcoin?' está pronto para uso."
 echo ""
 echo "Para iniciar o desenvolvimento:"
 echo "1. Edite os arquivos HTML, CSS e JS conforme necessário"

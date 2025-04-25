@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# Script de atualização para o projeto "Aqui aceita Bitcoin?"
+# Script de atualização para o projeto "Aceita Bitcoin?"
 # Este script automatiza o processo de atualização do repositório local
 
-echo "=== Atualização do Projeto 'Aqui aceita Bitcoin?' ==="
+echo "=== Atualização do Projeto 'Aceita Bitcoin?' ==="
 echo "Iniciando processo de atualização..."
 
 # Verificar se o Git está instalado
@@ -75,7 +75,7 @@ if [ $? -ne 0 ]; then
 fi
 
 echo "✓ Atualização concluída com sucesso!"
-echo "O projeto 'Aqui aceita Bitcoin?' foi atualizado para a versão mais recente."
+echo "O projeto 'Aceita Bitcoin?' foi atualizado para a versão mais recente."
 echo ""
 echo "Para verificar as alterações, consulte o CHANGELOG.md"
 echo "Se encontrar problemas, você pode restaurar o backup de: $backup_dir"

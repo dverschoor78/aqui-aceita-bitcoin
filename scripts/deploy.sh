@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# Script de deploy para o projeto "Aqui aceita Bitcoin?"
+# Script de deploy para o projeto "Aceita Bitcoin?"
 # Este script automatiza o processo de deploy do site
 
-echo "=== Deploy do Projeto 'Aqui aceita Bitcoin?' ==="
+echo "=== Deploy do Projeto 'Aceita Bitcoin?' ==="
 echo "Iniciando processo de deploy..."
 
 # Verificar se estamos no diretório correto

@@ -2,7 +2,7 @@
 
 ## Visão Geral
 
-Este documento descreve a solução implementada para resolver os problemas de comunicação entre o frontend hospedado (HTTPS) e a API local (HTTP) no projeto "Aqui aceita Bitcoin?".
+Este documento descreve a solução implementada para resolver os problemas de comunicação entre o frontend hospedado (HTTPS) e a API local (HTTP) no projeto "Aceita Bitcoin?".
 
 ## Problema
 

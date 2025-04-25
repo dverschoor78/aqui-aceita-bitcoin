@@ -1,5 +1,5 @@
 /**
- * BTC Map Locations Manager - Gerencia múltiplas localidades para o projeto "Aqui aceita Bitcoin?"
+ * BTC Map Locations Manager - Gerencia múltiplas localidades para o projeto "Aceita Bitcoin?"
  * 
  * Este módulo implementa a funcionalidade para gerenciar diferentes localidades (municípios, bairros, distritos)
  * e extrair informações sobre estabelecimentos cadastrados no BTC Maps para cada localidade.

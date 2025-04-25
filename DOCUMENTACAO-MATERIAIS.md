@@ -2,7 +2,7 @@
 
 ## Visão Geral
 
-A página de Materiais de Divulgação foi desenvolvida para fornecer recursos que auxiliem na expansão do projeto "Aqui aceita Bitcoin?" em Carambeí e região. Esta página centraliza diversos tipos de conteúdo que podem ser utilizados para abordar novos estabelecimentos, divulgar o projeto e educar sobre Bitcoin.
+A página de Materiais de Divulgação foi desenvolvida para fornecer recursos que auxiliem na expansão do projeto "Aceita Bitcoin?" em Carambeí e região. Esta página centraliza diversos tipos de conteúdo que podem ser utilizados para abordar novos estabelecimentos, divulgar o projeto e educar sobre Bitcoin.
 
 ## Estrutura da Página
 
@@ -29,7 +29,7 @@ Cada mensagem possui um botão "Copiar" que transfere o texto para a área de tr
 
 Nesta seção estão disponíveis arquivos para download:
 
-- **Adesivo "Aqui aceita Bitcoin"**: Para ser colocado na entrada dos estabelecimentos
+- **Adesivo "Aceita Bitcoin?"**: Para ser colocado na entrada dos estabelecimentos
 - **Folder Informativo**: Material explicativo sobre o projeto e Bitcoin
 - **Cartaz para Estabelecimento**: Informações sobre como funciona o pagamento em Bitcoin
 - **Guia Rápido para Comerciantes**: Passo a passo para implementação
@@ -80,7 +80,7 @@ Para manter a página de Materiais atualizada:
 
 ## Integração com o Restante do Site
 
-A página de Materiais está completamente integrada ao site "Aqui aceita Bitcoin?":
+A página de Materiais está completamente integrada ao site "Aceita Bitcoin?":
 
 - Link na navegação principal
 - Link no rodapé do site

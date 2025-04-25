@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# Script para criar um arquivo ZIP do projeto "Aqui aceita Bitcoin?"
+# Script para criar um arquivo ZIP do projeto "Aceita Bitcoin?"
 # Este script facilita a criação de um pacote para download
 
-echo "=== Criando pacote ZIP do Projeto 'Aqui aceita Bitcoin?' ==="
+echo "=== Criando pacote ZIP do Projeto 'Aceita Bitcoin?' ==="
 echo "Iniciando processo de empacotamento..."
 
 # Verificar se estamos no diretório correto

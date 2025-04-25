@@ -2,7 +2,7 @@
 
 ## Visão Geral
 
-O projeto "Aqui aceita Bitcoin?" foi redesenhado para facilitar o primeiro contato dos usuários, focando em três pontos principais:
+O projeto "Aceita Bitcoin?" foi redesenhado para facilitar o primeiro contato dos usuários, focando em três pontos principais:
 
 1. **Cadastro de estabelecimentos no mapa BTC**
 2. **Criação de carteira Bitcoin**
@@ -35,7 +35,7 @@ Nova página dedicada à criação de carteiras Bitcoin:
 
 Nova página informativa sobre o projeto e Bitcoin:
 
-- **Missão do projeto**: Objetivos e inspiração do "Aqui aceita Bitcoin?"
+- **Missão do projeto**: Objetivos e inspiração do "Aceita Bitcoin?"
 - **Estatísticas atuais**: Números de estabelecimentos, cidades e transações
 - **O que é Bitcoin**: Explicação clara e acessível sobre Bitcoin e Lightning Network
 - **Linha do tempo**: História do projeto desde o início até os planos futuros

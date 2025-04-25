@@ -72,7 +72,7 @@ class BTCMapMultiIntegrationClient {
         accepts_onchain: establishment.aceitaOnchain,
         osm_id: establishment.osm_id,
         osm_type: establishment.osm_type,
-        // Adicionar tag para identificar que o estabelecimento foi cadastrado pelo "Aqui aceita Bitcoin?"
+        // Adicionar tag para identificar que o estabelecimento foi cadastrado pelo "Aceita Bitcoin?"
         tags: {
           'currency:XBT': 'yes',
           'payment:lightning': establishment.aceitaLightning ? 'yes' : 'no',
@@ -111,7 +111,7 @@ class BTCMapMultiIntegrationClient {
           resolve({
             success: true,
             message: establishment.cadastroLocal && !establishment.cadastroOSM
-              ? 'Estabelecimento cadastrado com sucesso no site "Aqui aceita Bitcoin?"'
+              ? 'Estabelecimento cadastrado com sucesso no site "Aceita Bitcoin?"'
               : 'Estabelecimento cadastrado com sucesso e será sincronizado com o OpenStreetMap',
             establishment: {
               id: 'local_' + Date.now(),

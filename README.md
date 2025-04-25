@@ -1,10 +1,10 @@
-# Aqui aceita Bitcoin?
+# Aceita Bitcoin?
 
 Um projeto do Clube BR⚡LN para difundir o uso de Bitcoin como meio de pagamento em estabelecimentos comerciais.
 
 ## Sobre o Projeto
 
-Inspirado no projeto de Rolante-RS, que conseguiu com sucesso a adesão de mais de 200 estabelecimentos na cidade que aceitam Bitcoin, nosso projeto "Aqui aceita Bitcoin?" visa difundir o Bitcoin como moeda forte em Carambeí e região dos Campos Gerais.
+Inspirado no projeto de Rolante-RS, que conseguiu com sucesso a adesão de mais de 200 estabelecimentos na cidade que aceitam Bitcoin, nosso projeto "Aceita Bitcoin?" visa difundir o Bitcoin como moeda forte em Carambeí e região dos Campos Gerais.
 
 Nossa meta é criar mais de 1000 estabelecimentos que aceitem esta nova tecnologia, facilitando o primeiro contato das pessoas com o Bitcoin sem necessidade de entender conceitos complexos inicialmente.
 

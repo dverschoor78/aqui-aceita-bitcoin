@@ -1,8 +1,8 @@
-# Relatório de Automação - Projeto "Aqui aceita Bitcoin?"
+# Relatório de Automação - Projeto "Aceita Bitcoin?"
 
 ## Sumário Executivo
 
-Este relatório apresenta uma análise detalhada do trabalho de automação realizado no projeto "Aqui aceita Bitcoin?", identificando pontos fortes, desafios enfrentados e recomendações para avanços futuros. O foco principal está na avaliação dos esforços de automação para sincronização com o OpenStreetMap/BTC Maps e na proposta de uma API exclusiva para otimizar o processo de cadastro e sincronização.
+Este relatório apresenta uma análise detalhada do trabalho de automação realizado no projeto "Aceita Bitcoin?", identificando pontos fortes, desafios enfrentados e recomendações para avanços futuros. O foco principal está na avaliação dos esforços de automação para sincronização com o OpenStreetMap/BTC Maps e na proposta de uma API exclusiva para otimizar o processo de cadastro e sincronização.
 
 ## 1. Análise do Trabalho de Automação Realizado
 
@@ -186,7 +186,7 @@ Propomos o desenvolvimento de uma API exclusiva para automatizar o processo de c
 
 ## 7. Conclusão
 
-O trabalho de automação realizado até o momento estabeleceu uma base sólida para o projeto "Aqui aceita Bitcoin?", com funcionalidades essenciais implementadas de forma simplificada e funcional. No entanto, para alcançar o objetivo de cadastrar e sincronizar mais de 1000 estabelecimentos, é necessário avançar para uma solução mais robusta e automatizada.
+O trabalho de automação realizado até o momento estabeleceu uma base sólida para o projeto "Aceita Bitcoin?", com funcionalidades essenciais implementadas de forma simplificada e funcional. No entanto, para alcançar o objetivo de cadastrar e sincronizar mais de 1000 estabelecimentos, é necessário avançar para uma solução mais robusta e automatizada.
 
 A implementação da API exclusiva proposta representará um salto significativo na capacidade do sistema, eliminando as limitações atuais e proporcionando uma plataforma escalável para o crescimento contínuo do projeto. Com esta infraestrutura aprimorada, o Clube BR⚡LN estará bem posicionado para alcançar sua meta de difundir o uso de Bitcoin como meio de pagamento em estabelecimentos comerciais em toda a região.
 
