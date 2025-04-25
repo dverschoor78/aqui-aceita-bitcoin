@@ -6,6 +6,7 @@
     <title>Cadastro de Estabelecimento - Aqui aceita Bitcoin?</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
     <style>
         :root {
             --bitcoin-orange: #f7931a;
@@ -364,12 +365,12 @@
             </div>
         </div>
     </div>
-
+    <div id="header-placeholder"></div>
     <div class="container">
-        <header class="page-header">
+        <div class="page-header">
             <h1>Cadastrar Estabelecimento que Aceita Bitcoin</h1>
             <p>Ajude a expandir a rede de estabelecimentos que aceitam Bitcoin em sua região</p>
-        </header>
+        </div
 
         <!-- Mensagens de Feedback -->
         <div id="feedbackSuccess" class="feedback-message feedback-success" style="display: none; background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; padding: 15px; border-radius: 8px; margin-bottom: 25px;">
@@ -548,111 +549,18 @@
             </div>
         </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <div id="footer-placeholder"></div>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Definir a data atual como padrão para o campo de verificação
-            const today = new Date();
-            const formattedDate = today.toISOString().split('T')[0];
-            document.getElementById('checkDate').value = formattedDate;
-
-            // Manipulação do formulário
-            const cadastroForm = document.getElementById('cadastroForm');
-            const feedbackSuccess = document.getElementById('feedbackSuccess');
-            const feedbackError = document.getElementById('feedbackError');
-            const feedbackInfo = document.getElementById('feedbackInfo');
-
-            cadastroForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                // Mostrar modal de confirmação
-                const confirmationModal = new bootstrap.Modal(document.getElementById('confirmationModal'));
-                confirmationModal.show();
-                
-                // Limpar formulário após sucesso
-                cadastroForm.reset();
-                document.getElementById('checkDate').value = formattedDate;
-                document.getElementById('acceptsBitcoin').checked = true;
-                
-                // Configurar botão para voltar à página inicial
-                document.getElementById('goToHomeBtn').addEventListener('click', function() {
-                    window.location.href = "index.html";
-                });
-            });
-
-            // Função para obter estabelecimentos já cadastrados (simulação)
-            function getEstabelecimentosCadastrados() {
-                return [
-                    {
-                        nome: "Frederica's Koffiehuis",
-                        tipo: "cafe",
-                        endereco: "Avenida dos Pioneiros, 1010, Carambeí, PR",
-                        latitude: -24.9152,
-                        longitude: -50.0981,
-                        acceptsLightning: true,
-                        acceptsOnchain: true,
-                        acceptsLightningContactless: false,
-                        checkDate: "2025-04-18",
-                        email: "contato@fredericas.com.br",
-                        telefone: "(42) 3231-1234",
-                        website: "https://fredericas.com.br",
-                        observacoes: "Café colonial com ambiente agradável."
-                    },
-                    {
-                        nome: "DeltaD Engenharia e Locações",
-                        tipo: "rental",
-                        endereco: "Avenida dos Pioneiros, 00, Carambeí, PR",
-                        latitude: -24.9155,
-                        longitude: -50.0985,
-                        acceptsLightning: true,
-                        acceptsOnchain: true,
-                        acceptsLightningContactless: false,
-                        checkDate: "2025-04-09",
-                        email: "contato@deltad.com.br",
-                        telefone: "(42) 3231-5678",
-                        website: "https://deltad.com.br",
-                        observacoes: "Empresa de engenharia e locações."
-                    },
-                    {
-                        nome: "Dr. Adrian Gómez Collantes",
-                        tipo: "healthcare",
-                        endereco: "Rua Ouro Branco, 426, Carambeí, PR",
-                        latitude: -24.9160,
-                        longitude: -50.0990,
-                        acceptsLightning: true,
-                        acceptsOnchain: true,
-                        acceptsLightningContactless: true,
-                        checkDate: "2024-12-14",
-                        email: "contato@dradrianmedico.com.br",
-                        telefone: "(42) 3231-9012",
-                        website: "https://dradrianmedico.com.br",
-                        observacoes: "Serviços de saúde alternativos."
-                    }
-                ];
-            }
-
-            // Função para preencher o formulário com dados de um estabelecimento existente
-            function preencherFormulario(estabelecimento) {
-                document.getElementById('nomeEstabelecimento').value = estabelecimento.nome;
-                document.getElementById('tipoEstabelecimento').value = estabelecimento.tipo;
-                document.getElementById('endereco').value = estabelecimento.endereco;
-                document.getElementById('latitude').value = estabelecimento.latitude;
-                document.getElementById('longitude').value = estabelecimento.longitude;
-                document.getElementById('acceptsLightning').checked = estabelecimento.acceptsLightning;
-                document.getElementById('acceptsOnchain').checked = estabelecimento.acceptsOnchain;
-                document.getElementById('acceptsLightningContactless').checked = estabelecimento.acceptsLightningContactless;
-                document.getElementById('checkDate').value = estabelecimento.checkDate;
-                document.getElementById('email').value = estabelecimento.email;
-                document.getElementById('telefone').value = estabelecimento.telefone;
-                document.getElementById('website').value = estabelecimento.website;
-                document.getElementById('observacoes').value = estabelecimento.observacoes;
-            }
-
-            // Exemplo de como usar a função para preencher o formulário (para fins de demonstração)
-            // Descomente a linha abaixo para testar o preenchimento automático
-            // preencherFormulario(getEstabelecimentosCadastrados()[0]);
+        fetch('header.html').then(res => res.text()).then(data => {
+          document.getElementById('header-placeholder').innerHTML = data;
         });
-    </script>
+        fetch('footer.html').then(res => res.text()).then(data => {
+          document.getElementById('footer-placeholder').innerHTML = data;
+        });
+      </script>
+      
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/prefill_cadastro.js"></script>
+    <script src="js/form_submit.js"></script>
 </body>
 </html>

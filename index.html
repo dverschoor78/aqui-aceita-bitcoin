@@ -617,22 +617,7 @@
     </style>
 </head>
 <body>
-    <header>
-        <div class="header-container">
-            <div class="logo">
-                <img src="img/logos/logo.png" alt="Logo Aqui aceita Bitcoin?" onerror="this.src='https://via.placeholder.com/150x50/f7931a/ffffff?text=Aqui+aceita+Bitcoin?'">
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Início</a></li>
-                    <li><a href="sobre.html">Sobre nós</a></li>
-                    <li><a href="carteiras.html">Carteiras Bitcoin</a></li>
-                    <li><a href="cadastro.html">Cadastre seu estabelecimento</a></li>
-                    <li><a href="materiais.html">Materiais</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <div id="header-placeholder"></div>
     
     <main class="container">
         <section class="hero" style="padding: 30px 20px;">
@@ -780,7 +765,7 @@
         <!-- Formulário de cadastro rápido -->
         <section id="cadastro-rapido" class="quick-form">
             <h3>Cadastro Rápido</h3>
-            <form id="quickForm" action="cadastro.html" method="get">
+            <form id="quickForm">
                 <div class="form-row">
                     <div class="form-group">
                         <label for="nomeEstabelecimento">Nome do Estabelecimento</label>
@@ -825,69 +810,20 @@
         </section>
     </main>
     
-    <footer>
-        <div class="footer-container">
-            <div class="footer-section">
-                <h4>Aqui aceita Bitcoin?</h4>
-                <p>Iniciativa do Clube BR⚡LN para promover a adoção de Bitcoin em estabelecimentos comerciais.</p>
-                <div class="social-links">
-                    <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
-                    <a href="#" target="_blank"><i class="fab fa-telegram"></i></a>
-                    <a href="#" target="_blank"><i class="fab fa-github"></i></a>
-                    <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-                </div>
-            </div>
-            <div class="footer-section">
-                <h4>Links Úteis</h4>
-                <ul>
-                    <li><a href="index.html">Início</a></li>
-                    <li><a href="sobre.html">Sobre nós</a></li>
-                    <li><a href="carteiras.html">Carteiras Bitcoin</a></li>
-                    <li><a href="cadastro.html">Cadastre o estabelecimento</a></li>
-                    <li><a href="materiais.html">Materiais</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Recursos</h4>
-                <ul>
-                    <li><a href="https://btcmap.org" target="_blank">BTC Map</a></li>
-                    <li><a href="https://bitcoin.org" target="_blank">Bitcoin.org</a></li>
-                    <li><a href="https://lightning.network" target="_blank">Lightning Network</a></li>
-                    <li><a href="https://www.openstreetmap.org" target="_blank">OpenStreetMap</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Contato</h4>
-                <ul>
-                    <li><i class="fas fa-envelope me-2"></i> contato@aquiaceitabitcoin.com.br</li>
-                    <li><i class="fas fa-map-marker-alt me-2"></i> Carambeí, Paraná, Brasil</li>
-                </ul>
-            </div>
-        </div>
-        <div class="copyright">
-            <p>&copy; 2025 Aqui aceita Bitcoin? - Clube BR⚡LN. Todos os direitos reservados.</p>
-            <p>Powered by <img src="https://bitcoin.org/img/icons/logotop.svg" alt="Bitcoin Logo" class="bitcoin-logo"> Bitcoin</p>
-        </div>
-    </footer>
+    <div id="footer-placeholder"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/index_dynamic.js"></script>
+    <script src="js/quickForm.js"></script>
+    <script src="js/btcmap-flag-manager.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Formulário de cadastro rápido
-            const quickForm = document.getElementById('quickForm');
-            
-            quickForm.addEventListener('submit', function(e) {
-                // Não é necessário prevenir o comportamento padrão,
-                // pois queremos que o formulário redirecione para cadastro.html
-                
-                // Podemos adicionar validação adicional aqui se necessário
-                console.log('Formulário enviado com sucesso!');
-            });
-            
-            // Esconder o contador de estabelecimentos do BTC Map
-            // Isso é feito via CSS com display: none !important
+        fetch('header.html').then(res => res.text()).then(data => {
+          document.getElementById('header-placeholder').innerHTML = data;
+        });
+        fetch('footer.html').then(res => res.text()).then(data => {
+          document.getElementById('footer-placeholder').innerHTML = data;
         });
     </script>
-    <script src="js/btcmap-flag-manager.js"></script>
+      
 </body>
 </html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estabelecimentos - Aqui aceita Bitcoin?</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  
+<div id="header-placeholder"></div>
+  <main class="container mt-4">
+    <h1 class="section-title">Estabelecimentos Cadastrados</h1>
+    <p class="section-subtitle">Confira todos os locais que já aceitam Bitcoin!</p>
+    <div id="estabelecimentos-lista" class="row g-4"></div>
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const container = document.getElementById('estabelecimentos-lista');
+      container.innerHTML = '<p>Carregando...</p>';
+
+      try {
+        const res = await fetch('http://localhost:5000/api/estabelecimentos');
+        const data = await res.json();
+        container.innerHTML = '';
+
+        if (!data.length) {
+          container.innerHTML = '<p>Nenhum estabelecimento encontrado.</p>';
+          return;
+        }
+
+        data.forEach(est => {
+          const col = document.createElement('div');
+          col.className = 'col-md-4';
+
+          const imgPath = est.logo_filename ? `static/logos/${est.logo_filename}` : 'img/logos/default.png';
+
+          col.innerHTML = `
+            <div class="establishment-card">
+              <div class="establishment-image" style="background-image: url('${imgPath}')"></div>
+              <div class="establishment-details">
+                <h4 class="establishment-name">${est.nome}</h4>
+                <span class="establishment-category">${est.tipo}</span>
+                <div class="establishment-address">
+                  <i class="fas fa-map-marker-alt"></i>
+                  <span>${est.endereco}</span>
+                </div>
+                <div class="establishment-payment">
+                  ${est.aceita_lightning ? '<span class="payment-method lightning"><i class="fas fa-bolt"></i> Lightning</span>' : ''}
+                  ${est.aceita_onchain ? '<span class="payment-method onchain"><i class="fab fa-bitcoin"></i> On-chain</span>' : ''}
+                  ${est.aceita_contactless ? '<span class="payment-method contactless"><i class="fas fa-wifi"></i> Contactless</span>' : ''}
+                </div>
+              </div>
+            </div>
+          `;
+
+          container.appendChild(col);
+        });
+      } catch (err) {
+        console.error('Erro:', err);
+        container.innerHTML = '<p>Erro ao carregar os dados.</p>';
+      }
+    });
+  </script>
+  <script>
+    fetch('header.html').then(res => res.text()).then(data => {
+      document.getElementById('header-placeholder').innerHTML = data;
+    });
+    fetch('footer.html').then(res => res.text()).then(data => {
+      document.getElementById('footer-placeholder').innerHTML = data;
+    });
+  </script>
+  
+</body>
+</html>
