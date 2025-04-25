@@ -1,39 +1,126 @@
-# Aqui aceita Bitcoin? 🌟
+# Aqui aceita Bitcoin?
 
-Uma iniciativa do Clube BR⚡LN para promover a adoção de Bitcoin em estabelecimentos comerciais na região dos Campos Gerais do Paraná.
+Um projeto do Clube BR⚡LN para difundir o uso de Bitcoin como meio de pagamento em estabelecimentos comerciais.
 
-**Versão:** 0.1 (Experimental)
+## Sobre o Projeto
 
-## 🔍 O que é o "Aqui aceita Bitcoin?"
+Inspirado no projeto de Rolante-RS, que conseguiu com sucesso a adesão de mais de 200 estabelecimentos na cidade que aceitam Bitcoin, nosso projeto "Aqui aceita Bitcoin?" visa difundir o Bitcoin como moeda forte em Carambeí e região dos Campos Gerais.
 
-O projeto "Aqui aceita Bitcoin?" visa difundir o Bitcoin como moeda forte na região dos Campos Gerais do Paraná, começando pelas cidades de Carambeí, Ponta Grossa e Telêmaco Borba.
+Nossa meta é criar mais de 1000 estabelecimentos que aceitem esta nova tecnologia, facilitando o primeiro contato das pessoas com o Bitcoin sem necessidade de entender conceitos complexos inicialmente.
 
-Inspirado no projeto de Rolante-RS, que conseguiu com sucesso a adesão de mais de 200 estabelecimentos na cidade, nosso objetivo é criar uma rede de estabelecimentos que aceitam Bitcoin, facilitando o primeiro contato das pessoas com esta tecnologia.
+## Funcionalidades
 
-## ✨ Funcionalidades
+- **Mapa de Estabelecimentos**: Integração com o BTC Maps para visualizar estabelecimentos que aceitam Bitcoin
+- **Contador Interativo**: Visualização em tempo real do número de estabelecimentos na área visível do mapa
+- **Gráfico de Crescimento**: Visualização do crescimento da adoção de Bitcoin ao longo do tempo com períodos ajustáveis
+- **Cadastro Manual**: Interface simples para cadastro de novos estabelecimentos
+- **Sistema de Flags**: Indicadores visuais para acompanhar o status dos estabelecimentos (pendente, sincronizado, verificado)
+- **Relatórios e Estatísticas**: Visualização de dados sobre estabelecimentos cadastrados
+- **Gerador de Conteúdo**: Criação automática de posts para redes sociais
+- **Sistema de Auditoria**: Registro completo de todas as ações realizadas no sistema
 
-- 🗺️ **Mapa de Estabelecimentos**: Visualize todos os locais que aceitam Bitcoin
-- 📝 **Cadastro de Estabelecimentos**: Formulário simples para novos estabelecimentos
-- 🖨️ **Materiais para Impressão**: Adesivos, folders e cartazes prontos para uso
-- 👛 **Guia de Carteiras**: Instruções para criar e usar carteiras Bitcoin
-- 🔧 **Painel Administrativo**: Gerencie estabelecimentos e localidades
+## Tecnologias Utilizadas
 
-## 📋 Guia de Uso
+- HTML5, CSS3 e JavaScript puro (sem frameworks)
+- Chart.js para visualização de dados e gráficos interativos
+- Armazenamento local (localStorage) para dados
+- Integração com BTC Maps via iframe
+- Design responsivo para dispositivos móveis e desktop
 
-### Para Usuários
+## Instalação
 
-1. **Encontre Estabelecimentos**: Na página inicial, navegue pelo mapa para encontrar locais que aceitam Bitcoin
-2. **Cadastre seu Estabelecimento**: Use o formulário de cadastro para adicionar seu negócio
-3. **Baixe Materiais**: Acesse adesivos, folders e cartazes na seção de materiais
-4. **Crie uma Carteira**: Siga o guia passo a passo para criar sua carteira Bitcoin
+1. Clone este repositório:
+   ```
+   git clone https://github.com/clubebrln/aqui-aceita-bitcoin.git
+   ```
 
-### Para Administradores
+2. Abra o arquivo `index.html` em seu navegador para acessar a página principal.
 
-1. **Acesse o Painel**: Navegue para a página `/admin.html`
-2. **Gerencie Localidades**: Adicione ou edite cidades, bairros e regiões
-3. **Sincronize com BTC Maps**: Atualize dados de estabelecimentos automaticamente
-4. **Gere Conteúdo**: Crie posts para redes sociais e exporte dados
+3. Para acessar o painel de administração, abra o arquivo `admin.html`.
 
-## 📄 Licença
+4. Para cadastrar novos estabelecimentos, acesse `cadastro-manual.html`.
 
-Todos os direitos reservados ao Clube BR⚡LN.
+## Uso
+
+### Cadastro de Estabelecimentos
+
+1. Acesse a página de cadastro clicando em "Cadastrar" no menu principal.
+2. Preencha o formulário com os dados do estabelecimento.
+3. Clique em "Cadastrar" para salvar o estabelecimento.
+
+### Visualização de Estabelecimentos
+
+1. Na página principal, você pode ver o mapa do BTC Maps com todos os estabelecimentos cadastrados.
+2. O contador interativo no canto superior direito do mapa mostra o número de estabelecimentos na região visível.
+3. Use os botões de zoom (+/-) no contador para navegar entre diferentes regiões.
+4. Para ver a lista completa de estabelecimentos, acesse a página de cadastro e clique na aba "Lista".
+
+### Análise de Crescimento
+
+1. Abaixo do mapa, você encontrará um gráfico interativo que mostra o crescimento da adoção de Bitcoin ao longo do tempo.
+2. Use os botões de período para ajustar a visualização: "Todo o período", "Último ano" ou "Últimos 6 meses".
+3. O gráfico se atualiza automaticamente quando você navega para diferentes regiões no mapa.
+
+### Sincronização com BTC Maps
+
+1. Acesse a página de administração.
+2. Na lista de estabelecimentos, clique em "Sincronizado" para marcar um estabelecimento como sincronizado com o BTC Maps.
+
+### Geração de Conteúdo para Redes Sociais
+
+1. Acesse a página de administração.
+2. Na seção de redes sociais, você encontrará posts gerados automaticamente com base nos dados dos estabelecimentos.
+3. Clique em "Copiar" para copiar o conteúdo para a área de transferência.
+
+## Estrutura do Projeto
+
+```
+aqui-aceita-bitcoin/
+├── index.html              # Página principal
+├── cadastro-manual.html    # Página de cadastro de estabelecimentos
+├── admin.html              # Painel de administração
+├── css/
+│   ├── styles.css          # Estilos principais
+│   ├── bitcoin-maps.css    # Estilos para o mapa
+│   └── wallet-guide.css    # Estilos para o guia de carteiras
+├── js/
+│   ├── app.js              # Arquivo principal de JavaScript
+│   ├── btcmap-stats.js     # Contador interativo e gráfico de crescimento
+│   ├── estatisticas-manager.js  # Gerenciador de estatísticas
+│   ├── social-media-generator.js  # Gerador de conteúdo para redes sociais
+│   ├── auditoria-manager.js  # Sistema de auditoria
+│   └── test-suite.js       # Suite de testes
+└── assets/
+    └── images/             # Imagens e logos
+```
+
+## Personalização do Contador e Gráfico
+
+O contador interativo e o gráfico de crescimento podem ser personalizados editando o arquivo `js/btcmap-stats.js`:
+
+- **Dados de regiões**: Atualize o objeto `regionData` com os números reais de estabelecimentos em cada região.
+- **Dados históricos**: Modifique o objeto `growthData` para refletir o crescimento real ao longo do tempo.
+- **Níveis de zoom**: Ajuste o array `zoomLevels` para mapear diferentes níveis de zoom para regiões específicas.
+- **Aparência visual**: Personalize as cores, tamanhos e estilos dos elementos do contador e do gráfico.
+
+## Contribuição
+
+Contribuições são bem-vindas! Para contribuir:
+
+1. Faça um fork do projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/nova-funcionalidade`)
+3. Faça commit das suas alterações (`git commit -m 'Adiciona nova funcionalidade'`)
+4. Faça push para a branch (`git push origin feature/nova-funcionalidade`)
+5. Abra um Pull Request
+
+## Licença
+
+Este projeto está licenciado sob a licença MIT - veja o arquivo LICENSE para detalhes.
+
+## Contato
+
+Clube BR⚡LN - contato@clubebrln.org
+
+---
+
+Desenvolvido com ❤️ pelo Clube BR⚡LN
