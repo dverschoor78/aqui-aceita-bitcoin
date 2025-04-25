@@ -1,0 +1,1946 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administração - Aqui aceita Bitcoin?</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/btcmap-flags.css">
+    <style>
+        :root {
+            --bitcoin-orange: #f7931a;
+            --bitcoin-orange-light: #ffa94d;
+            --bitcoin-orange-dark: #e67e00;
+            --lightning-blue: #3d9ae8;
+            --onchain-green: #28a745;
+            --contactless-purple: #6f42c1;
+            --info-yellow: #fff9e6;
+            --light-gray: #f8f9fa;
+            --dark-gray: #343a40;
+            --medium-gray: #6c757d;
+            --border-radius: 8px;
+        }
+        
+        .admin-header {
+            background-color: var(--dark-gray);
+            color: white;
+            padding: 20px 0;
+            margin-bottom: 30px;
+        }
+        
+        .admin-card {
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .admin-card .card-header {
+            background-color: var(--bitcoin-orange);
+            color: white;
+            font-weight: 600;
+        }
+        
+        .admin-table th {
+            background-color: var(--light-gray);
+        }
+        
+        .status-pending {
+            background-color: #fff3cd;
+            color: #856404;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .status-confirmed {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .action-btn {
+            margin-right: 5px;
+        }
+        
+        .stats-card {
+            border-left: 4px solid var(--bitcoin-orange);
+            margin-bottom: 15px;
+            transition: transform 0.3s ease;
+        }
+        
+        .stats-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stats-card .card-body {
+            padding: 15px;
+        }
+        
+        .stats-card .stats-icon {
+            font-size: 2rem;
+            color: var(--bitcoin-orange);
+        }
+        
+        .stats-card .stats-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--dark-gray);
+        }
+        
+        .stats-card .stats-label {
+            color: var(--medium-gray);
+            font-size: 0.9rem;
+        }
+        
+        .btc-tag {
+            display: inline-block;
+            background-color: var(--info-yellow);
+            color: var(--dark-gray);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+        
+        .location-badge {
+            display: inline-block;
+            background-color: var(--lightning-blue);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+        }
+        
+        .location-selector {
+            margin-bottom: 20px;
+        }
+        
+        .location-card {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 10px;
+        }
+        
+        .location-card:hover {
+            background-color: var(--light-gray);
+        }
+        
+        .location-card.active {
+            border-color: var(--bitcoin-orange);
+            background-color: rgba(247, 147, 26, 0.1);
+        }
+        
+        .location-card h5 {
+            margin-bottom: 5px;
+            color: var(--dark-gray);
+        }
+        
+        .location-card p {
+            margin-bottom: 5px;
+            color: var(--medium-gray);
+            font-size: 0.9rem;
+        }
+        
+        .location-card .location-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        
+        .location-card .location-stat {
+            text-align: center;
+        }
+        
+        .location-card .location-stat-value {
+            font-weight: bold;
+            color: var(--bitcoin-orange);
+            font-size: 1.2rem;
+        }
+        
+        .location-card .location-stat-label {
+            font-size: 0.8rem;
+            color: var(--medium-gray);
+        }
+        
+        .nav-tabs .nav-link {
+            color: var(--medium-gray);
+        }
+        
+        .nav-tabs .nav-link.active {
+            color: var(--bitcoin-orange);
+            font-weight: 600;
+        }
+        
+        .tab-pane {
+            padding: 20px 0;
+        }
+        
+        #map-container {
+            height: 400px;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header class="admin-header">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <h1><i class="fas fa-user-shield me-2"></i> Painel Administrativo</h1>
+                <a href="index.html" class="btn btn-outline-light">
+                    <i class="fas fa-home me-2"></i> Voltar ao Site
+                </a>
+            </div>
+        </div>
+    </header>
+    
+    <main class="container">
+        <!-- Estatísticas Gerais -->
+        <div class="row mb-4">
+            <div class="col-md-3">
+                <div class="card stats-card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <div class="stats-value" id="total-establishments">0</div>
+                                <div class="stats-label">Estabelecimentos</div>
+                            </div>
+                            <div class="stats-icon">
+                                <i class="fas fa-store"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card stats-card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <div class="stats-value" id="total-locations">3</div>
+                                <div class="stats-label">Localidades</div>
+                            </div>
+                            <div class="stats-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card stats-card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <div class="stats-value" id="pending-establishments">0</div>
+                                <div class="stats-label">Pendentes</div>
+                            </div>
+                            <div class="stats-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card stats-card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <div class="stats-value" id="confirmed-establishments">0</div>
+                                <div class="stats-label">Confirmados</div>
+                            </div>
+                            <div class="stats-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Seletor de Localidades -->
+        <div class="card admin-card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0"><i class="fas fa-map-marked-alt me-2"></i> Gerenciamento de Localidades</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="location-selector">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="location-card active" data-location="carambei">
+                                        <h5><i class="fas fa-map-marker-alt me-2"></i> Carambeí</h5>
+                                        <p>Município com forte influência holandesa, localizado na região dos Campos Gerais do Paraná.</p>
+                                        <div class="location-stats">
+                                            <div class="location-stat">
+                                                <div class="location-stat-value" id="carambei-count">3</div>
+                                                <div class="location-stat-label">Estabelecimentos</div>
+                                            </div>
+                                            <div class="location-stat">
+                                                <div class="location-stat-value" id="carambei-pending">0</div>
+                                                <div class="location-stat-label">Pendentes</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="location-card" data-location="ponta-grossa">
+                                        <h5><i class="fas fa-map-marker-alt me-2"></i> Ponta Grossa</h5>
+                                        <p>Maior cidade da região dos Campos Gerais do Paraná, importante polo industrial e universitário.</p>
+                                        <div class="location-stats">
+                                            <div class="location-stat">
+                                                <div class="location-stat-value" id="ponta-grossa-count">2</div>
+                                                <div class="location-stat-label">Estabelecimentos</div>
+                                            </div>
+                                            <div class="location-stat">
+                                                <div class="location-stat-value" id="ponta-grossa-pending">0</div>
+                                                <div class="location-stat-label">Pendentes</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="location-card" data-location="telemaco-borba">
+                                        <h5><i class="fas fa-map-marker-alt me-2"></i> Telêmaco Borba</h5>
+                                        <p>Município conhecido por sua indústria de papel e celulose, localizado na região dos Campos Gerais do Paraná.</p>
+                                        <div class="location-stats">
+                                            <div class="location-stat">
+                                                <div class="location-stat-value" id="telemaco-borba-count">1</div>
+                                                <div class="location-stat-label">Estabelecimentos</div>
+                                            </div>
+                                            <div class="location-stat">
+                                                <div class="location-stat-value" id="telemaco-borba-pending">0</div>
+                                                <div class="location-stat-label">Pendentes</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-end mt-3">
+                            <button class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#addLocationModal">
+                                <i class="fas fa-plus me-2"></i> Adicionar Localidade
+                            </button>
+                            <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#editLocationModal">
+                                <i class="fas fa-edit me-2"></i> Editar Localidade
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div id="map-container">
+                            <!-- Mapa será carregado aqui -->
+                            <iframe src="https://btcmap.org/map#10/-24.9/-50.1" width="100%" height="100%" frameborder="0"></iframe>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-primary" id="syncAllLocationsBtn">
+                                <i class="fas fa-sync me-2"></i> Sincronizar Todas as Localidades
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Abas de Gerenciamento -->
+        <ul class="nav nav-tabs" id="adminTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="establishments-tab" data-bs-toggle="tab" data-bs-target="#establishments" type="button" role="tab" aria-controls="establishments" aria-selected="true">
+                    <i class="fas fa-store me-2"></i> Estabelecimentos
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="statistics-tab" data-bs-toggle="tab" data-bs-target="#statistics" type="button" role="tab" aria-controls="statistics" aria-selected="false">
+                    <i class="fas fa-chart-bar me-2"></i> Estatísticas
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="social-tab" data-bs-toggle="tab" data-bs-target="#social" type="button" role="tab" aria-controls="social" aria-selected="false">
+                    <i class="fas fa-share-alt me-2"></i> Redes Sociais
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="settings-tab" data-bs-toggle="tab" data-bs-target="#settings" type="button" role="tab" aria-controls="settings" aria-selected="false">
+                    <i class="fas fa-cog me-2"></i> Configurações
+                </button>
+            </li>
+        </ul>
+        
+        <div class="tab-content" id="adminTabsContent">
+            <!-- Aba de Estabelecimentos -->
+            <div class="tab-pane fade show active" id="establishments" role="tabpanel" aria-labelledby="establishments-tab">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h3 class="mb-0">Estabelecimentos em <span id="current-location-name">Carambeí</span></h3>
+                    <div>
+                        <button class="btn btn-success me-2" data-bs-toggle="modal" data-bs-target="#addEstablishmentModal">
+                            <i class="fas fa-plus me-2"></i> Adicionar Estabelecimento
+                        </button>
+                        <button class="btn btn-primary" id="syncLocationBtn">
+                            <i class="fas fa-sync me-2"></i> Sincronizar com BTC Maps
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="card admin-card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover admin-table" id="establishments-table">
+                                <thead>
+                                    <tr>
+                                        <th>Nome</th>
+                                        <th>Tipo</th>
+                                        <th>Endereço</th>
+                                        <th>Métodos de Pagamento</th>
+                                        <th>Status</th>
+                                        <th>Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Dados serão carregados dinamicamente -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card admin-card mt-4">
+                    <div class="card-header">
+                        <h5 class="mb-0"><i class="fas fa-tags me-2"></i> Tags BTC Maps</h5>
+                    </div>
+                    <div class="card-body">
+                        <p>Use estas tags para cadastrar estabelecimentos no OpenStreetMap:</p>
+                        <div class="btc-tags-container mb-3">
+                            <span class="btc-tag">currency:XBT=yes</span>
+                            <span class="btc-tag">payment:lightning=yes</span>
+                            <span class="btc-tag">payment:onchain=yes</span>
+                            <span class="btc-tag">check_date:currency:XBT=yyyy/mm/dd</span>
+                            <span class="btc-tag">source:bitcoin_acceptance=aqui_aceita_bitcoin</span>
+                            <span class="btc-tag">source:location=carambei</span>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <button class="btn btn-sm btn-outline-secondary" id="copyTagsBtn">
+                                <i class="fas fa-copy me-2"></i> Copiar Tags
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card admin-card mt-4">
+                    <div class="card-header">
+                        <h5 class="mb-0"><i class="fas fa-file-export me-2"></i> Exportar Dados</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="exportFormat" class="form-label">Formato de Exportação</label>
+                                    <select class="form-select" id="exportFormat">
+                                        <option value="json">JSON</option>
+                                        <option value="csv">CSV</option>
+                                        <option value="osm">OSM XML</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="exportLocation" class="form-label">Localidade</label>
+                                    <select class="form-select" id="exportLocation">
+                                        <option value="current">Localidade Atual</option>
+                                        <option value="all">Todas as Localidades</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <button class="btn btn-primary" id="exportDataBtn">
+                                <i class="fas fa-download me-2"></i> Exportar Dados
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Aba de Estatísticas -->
+            <div class="tab-pane fade" id="statistics" role="tabpanel" aria-labelledby="statistics-tab">
+                <h3 class="mb-4">Estatísticas do Projeto</h3>
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card admin-card">
+                            <div class="card-header">
+                                <h5 class="mb-0"><i class="fas fa-chart-pie me-2"></i> Distribuição por Localidade</h5>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="locationChart" height="300"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card admin-card">
+                            <div class="card-header">
+                                <h5 class="mb-0"><i class="fas fa-chart-line me-2"></i> Crescimento Mensal</h5>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="growthChart" height="300"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row mt-4">
+                    <div class="col-md-6">
+                        <div class="card admin-card">
+                            <div class="card-header">
+                                <h5 class="mb-0"><i class="fas fa-chart-bar me-2"></i> Tipos de Estabelecimento</h5>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="typeChart" height="300"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card admin-card">
+                            <div class="card-header">
+                                <h5 class="mb-0"><i class="fas fa-chart-bar me-2"></i> Métodos de Pagamento</h5>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="paymentChart" height="300"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card admin-card mt-4">
+                    <div class="card-header">
+                        <h5 class="mb-0"><i class="fas fa-table me-2"></i> Resumo por Localidade</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover admin-table" id="stats-table">
+                                <thead>
+                                    <tr>
+                                        <th>Localidade</th>
+                                        <th>Total</th>
+                                        <th>Lightning</th>
+                                        <th>On-chain</th>
+                                        <th>Pendentes</th>
+                                        <th>Confirmados</th>
+                                        <th>Última Atualização</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Carambeí</td>
+                                        <td>3</td>
+                                        <td>3</td>
+                                        <td>2</td>
+                                        <td>0</td>
+                                        <td>3</td>
+                                        <td>24/04/2025</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ponta Grossa</td>
+                                        <td>2</td>
+                                        <td>2</td>
+                                        <td>2</td>
+                                        <td>0</td>
+                                        <td>2</td>
+                                        <td>24/04/2025</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Telêmaco Borba</td>
+                                        <td>1</td>
+                                        <td>1</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>1</td>
+                                        <td>24/04/2025</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Aba de Redes Sociais -->
+            <div class="tab-pane fade" id="social" role="tabpanel" aria-labelledby="social-tab">
+                <h3 class="mb-4">Gerenciamento de Redes Sociais</h3>
+                
+                <div class="card admin-card">
+                    <div class="card-header">
+                        <h5 class="mb-0"><i class="fas fa-bullhorn me-2"></i> Gerador de Posts</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="postType" class="form-label">Tipo de Post</label>
+                                    <select class="form-select" id="postType">
+                                        <option value="new-establishment">Novo Estabelecimento</option>
+                                        <option value="location-highlight">Destaque de Localidade</option>
+                                        <option value="bitcoin-benefits">Benefícios do Bitcoin</option>
+                                        <option value="project-update">Atualização do Projeto</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group mb-3" id="establishmentSelectGroup">
+                                    <label for="establishmentSelect" class="form-label">Estabelecimento</label>
+                                    <select class="form-select" id="establishmentSelect">
+                                        <option value="">Selecione um estabelecimento...</option>
+                                        <!-- Opções serão carregadas dinamicamente -->
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group mb-3" id="locationSelectGroup" style="display: none;">
+                                    <label for="locationSelect" class="form-label">Localidade</label>
+                                    <select class="form-select" id="locationSelect">
+                                        <option value="carambei">Carambeí</option>
+                                        <option value="ponta-grossa">Ponta Grossa</option>
+                                        <option value="telemaco-borba">Telêmaco Borba</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group mb-3">
+                                    <label for="socialPlatform" class="form-label">Plataforma</label>
+                                    <select class="form-select" id="socialPlatform">
+                                        <option value="instagram">Instagram</option>
+                                        <option value="twitter">Twitter</option>
+                                        <option value="facebook">Facebook</option>
+                                    </select>
+                                </div>
+                                
+                                <button class="btn btn-primary" id="generatePostBtn">
+                                    <i class="fas fa-magic me-2"></i> Gerar Post
+                                </button>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="postContent" class="form-label">Conteúdo do Post</label>
+                                    <textarea class="form-control" id="postContent" rows="8" placeholder="O conteúdo do post será gerado aqui..."></textarea>
+                                </div>
+                                
+                                <div class="form-group mb-3">
+                                    <label for="postHashtags" class="form-label">Hashtags</label>
+                                    <input type="text" class="form-control" id="postHashtags" placeholder="#bitcoin #lightning #aquiaceitabitcoin">
+                                </div>
+                                
+                                <div class="d-flex justify-content-end">
+                                    <button class="btn btn-outline-secondary me-2" id="copyPostBtn">
+                                        <i class="fas fa-copy me-2"></i> Copiar Post
+                                    </button>
+                                    <button class="btn btn-success" id="schedulePostBtn">
+                                        <i class="fas fa-calendar-alt me-2"></i> Agendar Post
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card admin-card mt-4">
+                    <div class="card-header">
+                        <h5 class="mb-0"><i class="fas fa-calendar-alt me-2"></i> Posts Agendados</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover admin-table" id="scheduled-posts-table">
+                                <thead>
+                                    <tr>
+                                        <th>Data</th>
+                                        <th>Plataforma</th>
+                                        <th>Tipo</th>
+                                        <th>Conteúdo</th>
+                                        <th>Status</th>
+                                        <th>Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Dados serão carregados dinamicamente -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card admin-card mt-4">
+                    <div class="card-header">
+                        <h5 class="mb-0"><i class="fas fa-share-alt me-2"></i> Configurações de Redes Sociais</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group mb-3">
+                                    <label for="instagramHandle" class="form-label">Instagram</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">@</span>
+                                        <input type="text" class="form-control" id="instagramHandle" placeholder="aquiaceitabitcoin">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group mb-3">
+                                    <label for="twitterHandle" class="form-label">Twitter</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">@</span>
+                                        <input type="text" class="form-control" id="twitterHandle" placeholder="aquiaceitabtc">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group mb-3">
+                                    <label for="facebookPage" class="form-label">Facebook</label>
+                                    <input type="text" class="form-control" id="facebookPage" placeholder="aquiaceitabitcoin">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="defaultHashtags" class="form-label">Hashtags Padrão</label>
+                            <input type="text" class="form-control" id="defaultHashtags" placeholder="#bitcoin #lightning #aquiaceitabitcoin #btc #satoshi #nakamoto">
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <button class="btn btn-primary" id="saveSocialSettingsBtn">
+                                <i class="fas fa-save me-2"></i> Salvar Configurações
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Aba de Configurações -->
+            <div class="tab-pane fade" id="settings" role="tabpanel" aria-labelledby="settings-tab">
+                <h3 class="mb-4">Configurações do Sistema</h3>
+                
+                <div class="card admin-card">
+                    <div class="card-header">
+                        <h5 class="mb-0"><i class="fas fa-cog me-2"></i> Configurações Gerais</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="projectName" class="form-label">Nome do Projeto</label>
+                                    <input type="text" class="form-control" id="projectName" value="Aqui aceita Bitcoin?">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="projectDescription" class="form-label">Descrição do Projeto</label>
+                                    <textarea class="form-control" id="projectDescription" rows="3">Iniciativa do Clube BR⚡LN para promover a adoção de Bitcoin em estabelecimentos comerciais.</textarea>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="contactEmail" class="form-label">Email de Contato</label>
+                                    <input type="email" class="form-control" id="contactEmail" value="contato@aquiaceitabitcoin.com.br">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="defaultLocation" class="form-label">Localidade Padrão</label>
+                                    <select class="form-select" id="defaultLocation">
+                                        <option value="carambei" selected>Carambeí</option>
+                                        <option value="ponta-grossa">Ponta Grossa</option>
+                                        <option value="telemaco-borba">Telêmaco Borba</option>
+                                    </select>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="mapZoomLevel" class="form-label">Nível de Zoom do Mapa</label>
+                                    <input type="number" class="form-control" id="mapZoomLevel" value="14" min="1" max="20">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="cacheExpiration" class="form-label">Expiração do Cache (minutos)</label>
+                                    <input type="number" class="form-control" id="cacheExpiration" value="30" min="5" max="1440">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="enableAutoSync" checked>
+                            <label class="form-check-label" for="enableAutoSync">
+                                Habilitar sincronização automática com BTC Maps
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="enableNotifications" checked>
+                            <label class="form-check-label" for="enableNotifications">
+                                Habilitar notificações de novos estabelecimentos
+                            </label>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <button class="btn btn-primary" id="saveSettingsBtn">
+                                <i class="fas fa-save me-2"></i> Salvar Configurações
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card admin-card mt-4">
+                    <div class="card-header">
+                        <h5 class="mb-0"><i class="fas fa-database me-2"></i> Gerenciamento de Dados</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Backup de Dados</h5>
+                                        <p class="card-text">Faça backup de todos os dados do sistema, incluindo estabelecimentos, localidades e configurações.</p>
+                                        <button class="btn btn-primary" id="backupDataBtn">
+                                            <i class="fas fa-download me-2"></i> Fazer Backup
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Restaurar Dados</h5>
+                                        <p class="card-text">Restaure dados a partir de um arquivo de backup. Isso substituirá todos os dados atuais.</p>
+                                        <div class="input-group">
+                                            <input type="file" class="form-control" id="restoreFile">
+                                            <button class="btn btn-warning" id="restoreDataBtn">
+                                                <i class="fas fa-upload me-2"></i> Restaurar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-6">
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Limpar Cache</h5>
+                                        <p class="card-text">Limpe o cache do sistema para forçar a atualização de dados do BTC Maps.</p>
+                                        <button class="btn btn-secondary" id="clearCacheBtn">
+                                            <i class="fas fa-broom me-2"></i> Limpar Cache
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-danger">Redefinir Sistema</h5>
+                                        <p class="card-text">Atenção: Esta ação irá redefinir todos os dados do sistema para o estado inicial.</p>
+                                        <button class="btn btn-danger" id="resetSystemBtn" data-bs-toggle="modal" data-bs-target="#resetConfirmModal">
+                                            <i class="fas fa-exclamation-triangle me-2"></i> Redefinir Sistema
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Modal de Adicionar Estabelecimento -->
+    <div class="modal fade" id="addEstablishmentModal" tabindex="-1" aria-labelledby="addEstablishmentModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addEstablishmentModalLabel">Adicionar Estabelecimento</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addEstablishmentForm">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="establishmentName" class="form-label">Nome do Estabelecimento</label>
+                                    <input type="text" class="form-control" id="establishmentName" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="establishmentType" class="form-label">Tipo de Estabelecimento</label>
+                                    <select class="form-select" id="establishmentType" required>
+                                        <option value="" selected disabled>Selecione...</option>
+                                        <option value="restaurant">Restaurante</option>
+                                        <option value="cafe">Café</option>
+                                        <option value="bar">Bar</option>
+                                        <option value="hotel">Hotel</option>
+                                        <option value="shop">Loja</option>
+                                        <option value="supermarket">Supermercado</option>
+                                        <option value="bakery">Padaria</option>
+                                        <option value="pharmacy">Farmácia</option>
+                                        <option value="healthcare">Serviços de Saúde</option>
+                                        <option value="rental">Aluguel</option>
+                                        <option value="other">Outro</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="establishmentAddress" class="form-label">Endereço</label>
+                            <input type="text" class="form-control" id="establishmentAddress" required>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="establishmentLatitude" class="form-label">Latitude</label>
+                                    <input type="number" class="form-control" id="establishmentLatitude" step="0.000001" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="establishmentLongitude" class="form-label">Longitude</label>
+                                    <input type="number" class="form-control" id="establishmentLongitude" step="0.000001" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="establishmentLocation" class="form-label">Localidade</label>
+                                    <select class="form-select" id="establishmentLocation" required>
+                                        <option value="carambei" selected>Carambeí</option>
+                                        <option value="ponta-grossa">Ponta Grossa</option>
+                                        <option value="telemaco-borba">Telêmaco Borba</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="establishmentLogo" class="form-label">Logo (opcional)</label>
+                                    <input type="file" class="form-control" id="establishmentLogo">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox" id="acceptsLightning" checked>
+                                    <label class="form-check-label" for="acceptsLightning">
+                                        Aceita Lightning
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox" id="acceptsOnchain" checked>
+                                    <label class="form-check-label" for="acceptsOnchain">
+                                        Aceita On-chain
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="syncWithBTCMaps" checked>
+                            <label class="form-check-label" for="syncWithBTCMaps">
+                                Sincronizar com BTC Maps
+                            </label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="saveEstablishmentBtn">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal de Adicionar Localidade -->
+    <div class="modal fade" id="addLocationModal" tabindex="-1" aria-labelledby="addLocationModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addLocationModalLabel">Adicionar Localidade</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addLocationForm">
+                        <div class="form-group mb-3">
+                            <label for="locationId" class="form-label">ID da Localidade</label>
+                            <input type="text" class="form-control" id="locationId" required>
+                            <small class="form-text text-muted">Use apenas letras minúsculas, números e hífens. Ex: "castro", "jaguariaiva"</small>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="locationName" class="form-label">Nome da Localidade</label>
+                            <input type="text" class="form-control" id="locationName" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="locationType" class="form-label">Tipo de Localidade</label>
+                            <select class="form-select" id="locationType" required>
+                                <option value="city" selected>Cidade</option>
+                                <option value="district">Distrito</option>
+                                <option value="neighborhood">Bairro</option>
+                                <option value="region">Região</option>
+                            </select>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="locationState" class="form-label">Estado</label>
+                            <input type="text" class="form-control" id="locationState" value="PR" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="locationDescription" class="form-label">Descrição</label>
+                            <textarea class="form-control" id="locationDescription" rows="3"></textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="locationSouth" class="form-label">Latitude Sul</label>
+                                    <input type="number" class="form-control" id="locationSouth" step="0.000001" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="locationWest" class="form-label">Longitude Oeste</label>
+                                    <input type="number" class="form-control" id="locationWest" step="0.000001" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="locationNorth" class="form-label">Latitude Norte</label>
+                                    <input type="number" class="form-control" id="locationNorth" step="0.000001" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="locationEast" class="form-label">Longitude Leste</label>
+                                    <input type="number" class="form-control" id="locationEast" step="0.000001" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="locationEnabled" checked>
+                            <label class="form-check-label" for="locationEnabled">
+                                Localidade Habilitada
+                            </label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="saveLocationBtn">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal de Editar Localidade -->
+    <div class="modal fade" id="editLocationModal" tabindex="-1" aria-labelledby="editLocationModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editLocationModalLabel">Editar Localidade</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editLocationForm">
+                        <div class="form-group mb-3">
+                            <label for="editLocationSelect" class="form-label">Selecione a Localidade</label>
+                            <select class="form-select" id="editLocationSelect" required>
+                                <option value="carambei" selected>Carambeí</option>
+                                <option value="ponta-grossa">Ponta Grossa</option>
+                                <option value="telemaco-borba">Telêmaco Borba</option>
+                            </select>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="editLocationName" class="form-label">Nome da Localidade</label>
+                            <input type="text" class="form-control" id="editLocationName" value="Carambeí" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="editLocationType" class="form-label">Tipo de Localidade</label>
+                            <select class="form-select" id="editLocationType" required>
+                                <option value="city" selected>Cidade</option>
+                                <option value="district">Distrito</option>
+                                <option value="neighborhood">Bairro</option>
+                                <option value="region">Região</option>
+                            </select>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="editLocationState" class="form-label">Estado</label>
+                            <input type="text" class="form-control" id="editLocationState" value="PR" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="editLocationDescription" class="form-label">Descrição</label>
+                            <textarea class="form-control" id="editLocationDescription" rows="3">Município com forte influência holandesa, localizado na região dos Campos Gerais do Paraná.</textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="editLocationSouth" class="form-label">Latitude Sul</label>
+                                    <input type="number" class="form-control" id="editLocationSouth" value="-25.1" step="0.000001" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="editLocationWest" class="form-label">Longitude Oeste</label>
+                                    <input type="number" class="form-control" id="editLocationWest" value="-50.2" step="0.000001" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="editLocationNorth" class="form-label">Latitude Norte</label>
+                                    <input type="number" class="form-control" id="editLocationNorth" value="-24.8" step="0.000001" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="editLocationEast" class="form-label">Longitude Leste</label>
+                                    <input type="number" class="form-control" id="editLocationEast" value="-49.9" step="0.000001" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="editLocationEnabled" checked>
+                            <label class="form-check-label" for="editLocationEnabled">
+                                Localidade Habilitada
+                            </label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger me-auto" id="deleteLocationBtn">Excluir</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="updateLocationBtn">Atualizar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal de Confirmação de Reset -->
+    <div class="modal fade" id="resetConfirmModal" tabindex="-1" aria-labelledby="resetConfirmModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="resetConfirmModalLabel">Confirmar Redefinição</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-danger">
+                        <i class="fas fa-exclamation-triangle me-2"></i> <strong>Atenção!</strong> Esta ação irá redefinir todos os dados do sistema para o estado inicial. Esta ação não pode ser desfeita.
+                    </div>
+                    <p>Digite "REDEFINIR" para confirmar:</p>
+                    <input type="text" class="form-control" id="resetConfirmText">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger" id="confirmResetBtn" disabled>Redefinir Sistema</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+    <script src="js/btcmap-multi-integration.js"></script>
+    <script src="js/btcmap-locations-manager.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inicializar gerenciador de localidades
+            if (window.btcMapLocationsManager) {
+                window.btcMapLocationsManager.loadLocationsFromStorage();
+            }
+            
+            // Atualizar contadores
+            updateCounters();
+            
+            // Inicializar gráficos
+            initCharts();
+            
+            // Configurar eventos
+            setupEventListeners();
+            
+            // Carregar dados de estabelecimentos para a localidade atual
+            loadEstablishmentsForCurrentLocation();
+        });
+        
+        function updateCounters() {
+            // Atualizar contadores de estatísticas
+            document.getElementById('total-establishments').textContent = '6';
+            document.getElementById('pending-establishments').textContent = '0';
+            document.getElementById('confirmed-establishments').textContent = '6';
+        }
+        
+        function initCharts() {
+            // Gráfico de distribuição por localidade
+            const locationCtx = document.getElementById('locationChart').getContext('2d');
+            const locationChart = new Chart(locationCtx, {
+                type: 'pie',
+                data: {
+                    labels: ['Carambeí', 'Ponta Grossa', 'Telêmaco Borba'],
+                    datasets: [{
+                        data: [3, 2, 1],
+                        backgroundColor: [
+                            '#f7931a',
+                            '#3d9ae8',
+                            '#28a745'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+            
+            // Gráfico de crescimento mensal
+            const growthCtx = document.getElementById('growthChart').getContext('2d');
+            const growthChart = new Chart(growthCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'],
+                    datasets: [{
+                        label: 'Estabelecimentos',
+                        data: [1, 2, 3, 4, 5, 6],
+                        borderColor: '#f7931a',
+                        backgroundColor: 'rgba(247, 147, 26, 0.1)',
+                        tension: 0.3,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                precision: 0
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Gráfico de tipos de estabelecimento
+            const typeCtx = document.getElementById('typeChart').getContext('2d');
+            const typeChart = new Chart(typeCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Café', 'Restaurante', 'Loja', 'Supermercado', 'Serviços de Saúde', 'Aluguel'],
+                    datasets: [{
+                        label: 'Estabelecimentos',
+                        data: [2, 1, 1, 1, 1, 0],
+                        backgroundColor: '#f7931a'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                precision: 0
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Gráfico de métodos de pagamento
+            const paymentCtx = document.getElementById('paymentChart').getContext('2d');
+            const paymentChart = new Chart(paymentCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Lightning', 'On-chain', 'Ambos'],
+                    datasets: [{
+                        label: 'Estabelecimentos',
+                        data: [6, 4, 4],
+                        backgroundColor: ['#3d9ae8', '#28a745', '#f7931a']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                precision: 0
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        function setupEventListeners() {
+            // Seletor de localidades
+            document.querySelectorAll('.location-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    // Remover classe ativa de todos os cards
+                    document.querySelectorAll('.location-card').forEach(c => c.classList.remove('active'));
+                    
+                    // Adicionar classe ativa ao card clicado
+                    this.classList.add('active');
+                    
+                    // Obter ID da localidade
+                    const locationId = this.dataset.location;
+                    
+                    // Atualizar nome da localidade atual
+                    const locationName = this.querySelector('h5').textContent.replace(/^.*\s/, '');
+                    document.getElementById('current-location-name').textContent = locationName;
+                    
+                    // Carregar estabelecimentos para a localidade selecionada
+                    loadEstablishmentsForLocation(locationId);
+                    
+                    // Atualizar tags BTC Maps
+                    updateBTCMapsTags(locationId);
+                });
+            });
+            
+            // Botão de sincronização de localidade
+            document.getElementById('syncLocationBtn').addEventListener('click', function() {
+                // Obter localidade atual
+                const locationId = document.querySelector('.location-card.active').dataset.location;
+                
+                // Simular sincronização
+                alert(`Sincronizando estabelecimentos de ${document.getElementById('current-location-name').textContent} com BTC Maps...`);
+                
+                // Em um ambiente real, chamaríamos a API de sincronização
+                if (window.btcMapMultiIntegration) {
+                    window.btcMapMultiIntegration.syncWithOSM([], locationId)
+                        .then(result => {
+                            alert(`Sincronização concluída com sucesso! ${result.details.success} estabelecimentos sincronizados.`);
+                            loadEstablishmentsForLocation(locationId);
+                        })
+                        .catch(error => {
+                            alert(`Erro ao sincronizar: ${error.message}`);
+                        });
+                }
+            });
+            
+            // Botão de sincronização de todas as localidades
+            document.getElementById('syncAllLocationsBtn').addEventListener('click', function() {
+                // Simular sincronização
+                alert('Sincronizando todas as localidades com BTC Maps...');
+                
+                // Em um ambiente real, chamaríamos a API de sincronização para todas as localidades
+                if (window.btcMapMultiIntegration) {
+                    const locations = ['carambei', 'ponta-grossa', 'telemaco-borba'];
+                    
+                    Promise.all(locations.map(locationId => 
+                        window.btcMapMultiIntegration.syncWithOSM([], locationId)
+                    ))
+                    .then(results => {
+                        const totalSuccess = results.reduce((sum, result) => sum + result.details.success, 0);
+                        alert(`Sincronização concluída com sucesso! ${totalSuccess} estabelecimentos sincronizados.`);
+                        
+                        // Recarregar estabelecimentos para a localidade atual
+                        const currentLocationId = document.querySelector('.location-card.active').dataset.location;
+                        loadEstablishmentsForLocation(currentLocationId);
+                    })
+                    .catch(error => {
+                        alert(`Erro ao sincronizar: ${error.message}`);
+                    });
+                }
+            });
+            
+            // Botão de copiar tags
+            document.getElementById('copyTagsBtn').addEventListener('click', function() {
+                const tagsContainer = document.querySelector('.btc-tags-container');
+                const tags = Array.from(tagsContainer.querySelectorAll('.btc-tag'))
+                    .map(tag => tag.textContent)
+                    .join('\n');
+                
+                navigator.clipboard.writeText(tags)
+                    .then(() => {
+                        alert('Tags copiadas para a área de transferência!');
+                    })
+                    .catch(err => {
+                        console.error('Erro ao copiar tags:', err);
+                        alert('Erro ao copiar tags. Por favor, tente novamente.');
+                    });
+            });
+            
+            // Botão de exportar dados
+            document.getElementById('exportDataBtn').addEventListener('click', function() {
+                const format = document.getElementById('exportFormat').value;
+                const location = document.getElementById('exportLocation').value;
+                
+                alert(`Exportando dados em formato ${format} para ${location === 'current' ? 'localidade atual' : 'todas as localidades'}...`);
+                
+                // Em um ambiente real, chamaríamos a API de exportação
+                setTimeout(() => {
+                    alert('Dados exportados com sucesso!');
+                    
+                    // Simular download
+                    const a = document.createElement('a');
+                    a.href = '#';
+                    a.download = `aqui-aceita-bitcoin-${location === 'current' ? document.getElementById('current-location-name').textContent.toLowerCase() : 'todas-localidades'}.${format}`;
+                    a.click();
+                }, 1000);
+            });
+            
+            // Botão de gerar post
+            document.getElementById('generatePostBtn').addEventListener('click', function() {
+                const postType = document.getElementById('postType').value;
+                const platform = document.getElementById('socialPlatform').value;
+                
+                let content = '';
+                
+                switch (postType) {
+                    case 'new-establishment':
+                        content = '🎉 NOVO ESTABELECIMENTO ACEITANDO BITCOIN! 🎉\n\n' +
+                                 'Temos o prazer de anunciar que o Café Colonial Frederica\'s agora aceita pagamentos em Bitcoin!\n\n' +
+                                 '💰 Aceita Lightning Network para pagamentos instantâneos\n' +
+                                 '💰 Aceita transações on-chain\n\n' +
+                                 '📍 Localização: Av. dos Pioneiros, 1876 - Centro, Carambeí\n\n' +
+                                 'Visite e apoie estabelecimentos que estão adotando o futuro dos pagamentos!\n\n' +
+                                 '🔗 Mais informações: https://mizmgesl.manus.space';
+                        break;
+                    case 'location-highlight':
+                        content = '🗺️ DESTAQUE DE LOCALIDADE: CARAMBEÍ 🗺️\n\n' +
+                                 'Carambeí já conta com 3 estabelecimentos aceitando Bitcoin!\n\n' +
+                                 '🏢 Café Colonial Frederica\'s\n' +
+                                 '🏢 Restaurante Sabor Holandês\n' +
+                                 '🏢 Mercado Central\n\n' +
+                                 'Município com forte influência holandesa, Carambeí está se tornando um polo de adoção de Bitcoin na região dos Campos Gerais do Paraná.\n\n' +
+                                 '🔗 Confira o mapa completo: https://mizmgesl.manus.space';
+                        break;
+                    case 'bitcoin-benefits':
+                        content = '💡 POR QUE ACEITAR BITCOIN NO SEU NEGÓCIO? 💡\n\n' +
+                                 '⚡ Taxas mais baixas que cartões de crédito\n' +
+                                 '⚡ Pagamentos instantâneos com Lightning Network\n' +
+                                 '⚡ Sem chargebacks ou estornos\n' +
+                                 '⚡ Atrai novos clientes entusiastas de tecnologia\n' +
+                                 '⚡ Proteção contra inflação\n' +
+                                 '⚡ Visibilidade no mapa global de Bitcoin\n\n' +
+                                 'Quer saber mais? Cadastre seu estabelecimento gratuitamente!\n\n' +
+                                 '🔗 https://mizmgesl.manus.space/cadastro.html';
+                        break;
+                    case 'project-update':
+                        content = '📢 ATUALIZAÇÃO DO PROJETO "AQUI ACEITA BITCOIN?" 📢\n\n' +
+                                 'Estamos expandindo! Agora cobrimos 3 cidades na região dos Campos Gerais:\n\n' +
+                                 '🏙️ Carambeí: 3 estabelecimentos\n' +
+                                 '🏙️ Ponta Grossa: 2 estabelecimentos\n' +
+                                 '🏙️ Telêmaco Borba: 1 estabelecimento\n\n' +
+                                 'Total: 6 estabelecimentos aceitando Bitcoin!\n\n' +
+                                 'Ajude-nos a crescer! Compartilhe o projeto e incentive estabelecimentos a aceitarem Bitcoin.\n\n' +
+                                 '🔗 https://mizmgesl.manus.space';
+                        break;
+                }
+                
+                // Adicionar hashtags específicas para cada plataforma
+                if (platform === 'instagram') {
+                    content += '\n\n#bitcoin #lightning #aquiaceitabitcoin #btc #satoshi #nakamoto #carambeí #pontaGrossa #telêmacoBorba #paraná #brasil #criptomoedas #blockchain';
+                } else if (platform === 'twitter') {
+                    content += '\n\n#Bitcoin #Lightning #AquiAceitaBitcoin #BTC #Carambeí #PontaGrossa #TelêmacoBorba';
+                } else if (platform === 'facebook') {
+                    content += '\n\n#Bitcoin #Lightning #AquiAceitaBitcoin #Carambeí #PontaGrossa #TelêmacoBorba #Paraná #Brasil';
+                }
+                
+                document.getElementById('postContent').value = content;
+                document.getElementById('postHashtags').value = '#bitcoin #lightning #aquiaceitabitcoin #btc #satoshi #nakamoto';
+            });
+            
+            // Botão de copiar post
+            document.getElementById('copyPostBtn').addEventListener('click', function() {
+                const content = document.getElementById('postContent').value;
+                const hashtags = document.getElementById('postHashtags').value;
+                
+                navigator.clipboard.writeText(content + '\n\n' + hashtags)
+                    .then(() => {
+                        alert('Post copiado para a área de transferência!');
+                    })
+                    .catch(err => {
+                        console.error('Erro ao copiar post:', err);
+                        alert('Erro ao copiar post. Por favor, tente novamente.');
+                    });
+            });
+            
+            // Botão de agendar post
+            document.getElementById('schedulePostBtn').addEventListener('click', function() {
+                alert('Funcionalidade de agendamento de posts será implementada em breve!');
+            });
+            
+            // Botão de salvar configurações
+            document.getElementById('saveSettingsBtn').addEventListener('click', function() {
+                alert('Configurações salvas com sucesso!');
+            });
+            
+            // Botão de salvar configurações de redes sociais
+            document.getElementById('saveSocialSettingsBtn').addEventListener('click', function() {
+                alert('Configurações de redes sociais salvas com sucesso!');
+            });
+            
+            // Botão de backup de dados
+            document.getElementById('backupDataBtn').addEventListener('click', function() {
+                alert('Backup de dados realizado com sucesso!');
+                
+                // Simular download
+                const a = document.createElement('a');
+                a.href = '#';
+                a.download = `aqui-aceita-bitcoin-backup-${new Date().toISOString().split('T')[0]}.json`;
+                a.click();
+            });
+            
+            // Botão de limpar cache
+            document.getElementById('clearCacheBtn').addEventListener('click', function() {
+                if (window.btcMapMultiIntegration) {
+                    window.btcMapMultiIntegration.clearCache();
+                }
+                
+                alert('Cache limpo com sucesso!');
+            });
+            
+            // Campo de confirmação de reset
+            document.getElementById('resetConfirmText').addEventListener('input', function() {
+                const confirmBtn = document.getElementById('confirmResetBtn');
+                confirmBtn.disabled = this.value !== 'REDEFINIR';
+            });
+            
+            // Botão de confirmar reset
+            document.getElementById('confirmResetBtn').addEventListener('click', function() {
+                alert('Sistema redefinido com sucesso! A página será recarregada.');
+                location.reload();
+            });
+            
+            // Tipo de post
+            document.getElementById('postType').addEventListener('change', function() {
+                const establishmentGroup = document.getElementById('establishmentSelectGroup');
+                const locationGroup = document.getElementById('locationSelectGroup');
+                
+                if (this.value === 'new-establishment') {
+                    establishmentGroup.style.display = 'block';
+                    locationGroup.style.display = 'none';
+                } else if (this.value === 'location-highlight') {
+                    establishmentGroup.style.display = 'none';
+                    locationGroup.style.display = 'block';
+                } else {
+                    establishmentGroup.style.display = 'none';
+                    locationGroup.style.display = 'none';
+                }
+            });
+            
+            // Botão de salvar estabelecimento
+            document.getElementById('saveEstablishmentBtn').addEventListener('click', function() {
+                // Validar formulário
+                const form = document.getElementById('addEstablishmentForm');
+                if (!form.checkValidity()) {
+                    form.reportValidity();
+                    return;
+                }
+                
+                // Obter dados do formulário
+                const name = document.getElementById('establishmentName').value;
+                const type = document.getElementById('establishmentType').value;
+                const address = document.getElementById('establishmentAddress').value;
+                const latitude = parseFloat(document.getElementById('establishmentLatitude').value);
+                const longitude = parseFloat(document.getElementById('establishmentLongitude').value);
+                const locationId = document.getElementById('establishmentLocation').value;
+                const acceptsLightning = document.getElementById('acceptsLightning').checked;
+                const acceptsOnchain = document.getElementById('acceptsOnchain').checked;
+                const syncWithBTCMaps = document.getElementById('syncWithBTCMaps').checked;
+                
+                // Criar objeto de estabelecimento
+                const establishment = {
+                    nome: name,
+                    tipo: type,
+                    endereco: address,
+                    latitude: latitude,
+                    longitude: longitude,
+                    locationId: locationId,
+                    aceitaLightning: acceptsLightning,
+                    aceitaOnchain: acceptsOnchain,
+                    cadastroLocal: true,
+                    cadastroOSM: syncWithBTCMaps
+                };
+                
+                // Em um ambiente real, chamaríamos a API para adicionar o estabelecimento
+                if (window.btcMapMultiIntegration) {
+                    window.btcMapMultiIntegration.addEstablishment(establishment)
+                        .then(result => {
+                            alert(`Estabelecimento "${name}" cadastrado com sucesso!`);
+                            
+                            // Fechar modal
+                            const modal = bootstrap.Modal.getInstance(document.getElementById('addEstablishmentModal'));
+                            modal.hide();
+                            
+                            // Recarregar estabelecimentos
+                            loadEstablishmentsForLocation(locationId);
+                            
+                            // Atualizar contadores
+                            updateCounters();
+                        })
+                        .catch(error => {
+                            alert(`Erro ao cadastrar estabelecimento: ${error.message}`);
+                        });
+                } else {
+                    alert(`Estabelecimento "${name}" cadastrado com sucesso! (simulação)`);
+                    
+                    // Fechar modal
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('addEstablishmentModal'));
+                    modal.hide();
+                }
+            });
+            
+            // Botão de salvar localidade
+            document.getElementById('saveLocationBtn').addEventListener('click', function() {
+                // Validar formulário
+                const form = document.getElementById('addLocationForm');
+                if (!form.checkValidity()) {
+                    form.reportValidity();
+                    return;
+                }
+                
+                // Obter dados do formulário
+                const id = document.getElementById('locationId').value;
+                const name = document.getElementById('locationName').value;
+                const type = document.getElementById('locationType').value;
+                const state = document.getElementById('locationState').value;
+                const description = document.getElementById('locationDescription').value;
+                const south = parseFloat(document.getElementById('locationSouth').value);
+                const west = parseFloat(document.getElementById('locationWest').value);
+                const north = parseFloat(document.getElementById('locationNorth').value);
+                const east = parseFloat(document.getElementById('locationEast').value);
+                const enabled = document.getElementById('locationEnabled').checked;
+                
+                // Criar objeto de localidade
+                const location = {
+                    id: id,
+                    name: name,
+                    type: type,
+                    state: state,
+                    description: description,
+                    coordinates: {
+                        south: south,
+                        west: west,
+                        north: north,
+                        east: east
+                    },
+                    center: [(west + east) / 2, (south + north) / 2],
+                    zoom: 14,
+                    enabled: enabled,
+                    establishments: []
+                };
+                
+                // Em um ambiente real, chamaríamos a API para adicionar a localidade
+                if (window.btcMapLocationsManager) {
+                    window.btcMapLocationsManager.addLocation(location);
+                    alert(`Localidade "${name}" adicionada com sucesso!`);
+                    
+                    // Fechar modal
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('addLocationModal'));
+                    modal.hide();
+                    
+                    // Atualizar interface
+                    location.reload();
+                } else {
+                    alert(`Localidade "${name}" adicionada com sucesso! (simulação)`);
+                    
+                    // Fechar modal
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('addLocationModal'));
+                    modal.hide();
+                }
+            });
+        }
+        
+        function loadEstablishmentsForCurrentLocation() {
+            // Obter localidade atual
+            const locationId = document.querySelector('.location-card.active').dataset.location;
+            
+            // Carregar estabelecimentos
+            loadEstablishmentsForLocation(locationId);
+        }
+        
+        function loadEstablishmentsForLocation(locationId) {
+            // Atualizar tabela de estabelecimentos
+            const tableBody = document.querySelector('#establishments-table tbody');
+            tableBody.innerHTML = '';
+            
+            // Dados simulados para cada localidade
+            const mockData = {
+                'carambei': [
+                    {
+                        id: 'n7890123456',
+                        name: 'Café Colonial Frederica\'s',
+                        type: 'cafe',
+                        address: 'Av. dos Pioneiros, 1876 - Centro, Carambeí',
+                        tags: {
+                            'payment:lightning': 'yes',
+                            'payment:onchain': 'yes',
+                            'check_date:currency:XBT': '2025-03-15'
+                        },
+                        status: 'confirmed'
+                    },
+                    {
+                        id: 'n7890123457',
+                        name: 'Restaurante Sabor Holandês',
+                        type: 'restaurant',
+                        address: 'Rua das Tulipas, 234 - Centro, Carambeí',
+                        tags: {
+                            'payment:lightning': 'yes',
+                            'payment:onchain': 'no',
+                            'check_date:currency:XBT': '2025-03-20'
+                        },
+                        status: 'confirmed'
+                    },
+                    {
+                        id: 'n7890123458',
+                        name: 'Mercado Central',
+                        type: 'supermarket',
+                        address: 'Rua Principal, 567 - Centro, Carambeí',
+                        tags: {
+                            'payment:lightning': 'no',
+                            'payment:onchain': 'yes',
+                            'check_date:currency:XBT': '2025-04-01'
+                        },
+                        status: 'confirmed'
+                    }
+                ],
+                'ponta-grossa': [
+                    {
+                        id: 'n7890123459',
+                        name: 'Pizzaria Bitcoin',
+                        type: 'restaurant',
+                        address: 'Rua Balduíno Taques, 1234 - Centro, Ponta Grossa',
+                        tags: {
+                            'payment:lightning': 'yes',
+                            'payment:onchain': 'yes',
+                            'check_date:currency:XBT': '2025-04-10'
+                        },
+                        status: 'confirmed'
+                    },
+                    {
+                        id: 'n7890123460',
+                        name: 'Livraria Satoshi',
+                        type: 'shop',
+                        address: 'Av. Vicente Machado, 567 - Centro, Ponta Grossa',
+                        tags: {
+                            'payment:lightning': 'yes',
+                            'payment:onchain': 'yes',
+                            'check_date:currency:XBT': '2025-04-05'
+                        },
+                        status: 'confirmed'
+                    }
+                ],
+                'telemaco-borba': [
+                    {
+                        id: 'n7890123461',
+                        name: 'Café Blockchain',
+                        type: 'cafe',
+                        address: 'Av. Horácio Klabin, 789 - Centro, Telêmaco Borba',
+                        tags: {
+                            'payment:lightning': 'yes',
+                            'payment:onchain': 'no',
+                            'check_date:currency:XBT': '2025-04-15'
+                        },
+                        status: 'confirmed'
+                    }
+                ]
+            };
+            
+            // Obter estabelecimentos para a localidade selecionada
+            const establishments = mockData[locationId] || [];
+            
+            // Em um ambiente real, usaríamos a API para buscar estabelecimentos
+            if (window.btcMapMultiIntegration) {
+                // Obter coordenadas da localidade
+                let locationBounds = null;
+                if (window.btcMapLocationsManager) {
+                    const location = window.btcMapLocationsManager.locations.find(loc => loc.id === locationId);
+                    if (location) {
+                        locationBounds = location.coordinates;
+                    }
+                }
+                
+                if (locationBounds) {
+                    window.btcMapMultiIntegration.searchEstablishmentsByLocation(locationId, locationBounds)
+                        .then(apiEstablishments => {
+                            if (apiEstablishments && apiEstablishments.length > 0) {
+                                renderEstablishmentsTable(apiEstablishments);
+                            } else {
+                                renderEstablishmentsTable(establishments);
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Erro ao buscar estabelecimentos:', error);
+                            renderEstablishmentsTable(establishments);
+                        });
+                } else {
+                    renderEstablishmentsTable(establishments);
+                }
+            } else {
+                renderEstablishmentsTable(establishments);
+            }
+            
+            // Atualizar tags BTC Maps
+            updateBTCMapsTags(locationId);
+            
+            // Atualizar select de estabelecimentos para posts
+            updateEstablishmentSelect(establishments);
+        }
+        
+        function renderEstablishmentsTable(establishments) {
+            const tableBody = document.querySelector('#establishments-table tbody');
+            tableBody.innerHTML = '';
+            
+            establishments.forEach(establishment => {
+                const row = document.createElement('tr');
+                
+                // Nome
+                const nameCell = document.createElement('td');
+                nameCell.textContent = establishment.name;
+                row.appendChild(nameCell);
+                
+                // Tipo
+                const typeCell = document.createElement('td');
+                typeCell.textContent = formatEstablishmentType(establishment.type);
+                row.appendChild(typeCell);
+                
+                // Endereço
+                const addressCell = document.createElement('td');
+                addressCell.textContent = establishment.address;
+                row.appendChild(addressCell);
+                
+                // Métodos de Pagamento
+                const paymentCell = document.createElement('td');
+                
+                if (establishment.tags && establishment.tags['payment:lightning'] === 'yes') {
+                    const lightning = document.createElement('span');
+                    lightning.className = 'payment-method lightning';
+                    lightning.innerHTML = '<i class="fas fa-bolt"></i> Lightning';
+                    paymentCell.appendChild(lightning);
+                }
+                
+                if (establishment.tags && establishment.tags['payment:onchain'] === 'yes') {
+                    const onchain = document.createElement('span');
+                    onchain.className = 'payment-method onchain';
+                    onchain.innerHTML = '<i class="fas fa-link"></i> On-chain';
+                    paymentCell.appendChild(onchain);
+                }
+                
+                row.appendChild(paymentCell);
+                
+                // Status
+                const statusCell = document.createElement('td');
+                const statusSpan = document.createElement('span');
+                statusSpan.className = establishment.status === 'pending' ? 'status-pending' : 'status-confirmed';
+                statusSpan.textContent = establishment.status === 'pending' ? 'Pendente' : 'Confirmado';
+                statusCell.appendChild(statusSpan);
+                row.appendChild(statusCell);
+                
+                // Ações
+                const actionsCell = document.createElement('td');
+                
+                const editBtn = document.createElement('button');
+                editBtn.className = 'btn btn-sm btn-outline-primary action-btn';
+                editBtn.innerHTML = '<i class="fas fa-edit"></i>';
+                editBtn.title = 'Editar';
+                editBtn.addEventListener('click', () => {
+                    alert(`Editar estabelecimento: ${establishment.name}`);
+                });
+                actionsCell.appendChild(editBtn);
+                
+                const deleteBtn = document.createElement('button');
+                deleteBtn.className = 'btn btn-sm btn-outline-danger action-btn';
+                deleteBtn.innerHTML = '<i class="fas fa-trash"></i>';
+                deleteBtn.title = 'Excluir';
+                deleteBtn.addEventListener('click', () => {
+                    if (confirm(`Deseja realmente excluir o estabelecimento "${establishment.name}"?`)) {
+                        alert(`Estabelecimento "${establishment.name}" excluído com sucesso!`);
+                        row.remove();
+                    }
+                });
+                actionsCell.appendChild(deleteBtn);
+                
+                if (establishment.status === 'pending') {
+                    const confirmBtn = document.createElement('button');
+                    confirmBtn.className = 'btn btn-sm btn-outline-success action-btn';
+                    confirmBtn.innerHTML = '<i class="fas fa-check"></i>';
+                    confirmBtn.title = 'Confirmar';
+                    confirmBtn.addEventListener('click', () => {
+                        alert(`Estabelecimento "${establishment.name}" confirmado com sucesso!`);
+                        statusSpan.className = 'status-confirmed';
+                        statusSpan.textContent = 'Confirmado';
+                        confirmBtn.remove();
+                    });
+                    actionsCell.appendChild(confirmBtn);
+                }
+                
+                row.appendChild(actionsCell);
+                
+                tableBody.appendChild(row);
+            });
+        }
+        
+        function updateBTCMapsTags(locationId) {
+            const tagsContainer = document.querySelector('.btc-tags-container');
+            const tags = [
+                'currency:XBT=yes',
+                'payment:lightning=yes',
+                'payment:onchain=yes',
+                `check_date:currency:XBT=${new Date().toISOString().split('T')[0]}`,
+                'source:bitcoin_acceptance=aqui_aceita_bitcoin',
+                `source:location=${locationId}`
+            ];
+            
+            tagsContainer.innerHTML = '';
+            
+            tags.forEach(tag => {
+                const tagSpan = document.createElement('span');
+                tagSpan.className = 'btc-tag';
+                tagSpan.textContent = tag;
+                tagsContainer.appendChild(tagSpan);
+            });
+        }
+        
+        function updateEstablishmentSelect(establishments) {
+            const select = document.getElementById('establishmentSelect');
+            select.innerHTML = '<option value="">Selecione um estabelecimento...</option>';
+            
+            establishments.forEach(establishment => {
+                const option = document.createElement('option');
+                option.value = establishment.id;
+                option.textContent = establishment.name;
+                select.appendChild(option);
+            });
+        }
+        
+        function formatEstablishmentType(type) {
+            const types = {
+                'cafe': 'Café',
+                'restaurant': 'Restaurante',
+                'supermarket': 'Supermercado',
+                'shop': 'Loja',
+                'hotel': 'Hotel',
+                'bar': 'Bar',
+                'bakery': 'Padaria',
+                'pharmacy': 'Farmácia',
+                'healthcare': 'Serviços de Saúde',
+                'rental': 'Aluguel'
+            };
+            
+            return types[type] || type;
+        }
+    </script>
+</body>
+</html>

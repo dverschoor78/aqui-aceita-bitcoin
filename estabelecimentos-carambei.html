@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estabelecimentos em Carambeí - Aqui aceita Bitcoin?</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            color: #f7931a;
+            margin-bottom: 10px;
+            font-size: 2em;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+        }
+        
+        .establishments-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .establishments-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .establishments-title {
+            color: #f7931a;
+            font-size: 1.8em;
+            margin: 0;
+        }
+        
+        .establishments-filters {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .filter-group {
+            display: flex;
+            align-items: center;
+        }
+        
+        .filter-label {
+            margin-right: 10px;
+            font-weight: bold;
+            color: #555;
+        }
+        
+        .filter-select {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #fff;
+        }
+        
+        .establishments-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        
+        .establishments-table th {
+            text-align: left;
+            padding: 12px 15px;
+            background-color: #f7931a;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .establishments-table th:first-child {
+            border-top-left-radius: 8px;
+        }
+        
+        .establishments-table th:last-child {
+            border-top-right-radius: 8px;
+        }
+        
+        .establishments-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .establishments-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .establishments-table tr:hover {
+            background-color: #f9f9f9;
+        }
+        
+        .establishment-status {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        .status-approved {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .status-pending {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        
+        .status-rejected {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        
+        .empty-establishments {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+        }
+        
+        .empty-establishments i {
+            font-size: 3em;
+            color: #ddd;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            gap: 5px;
+        }
+        
+        .pagination-button {
+            padding: 8px 12px;
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .pagination-button:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .pagination-button.active {
+            background-color: #f7931a;
+            color: white;
+            border-color: #f7931a;
+        }
+        
+        .pagination-button.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .establishment-actions {
+            display: flex;
+            gap: 5px;
+        }
+        
+        .action-button {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            background-color: #f0f0f0;
+            color: #333;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .action-button:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .action-button.view {
+            background-color: #e2f0fd;
+            color: #0366d6;
+        }
+        
+        .action-button.view:hover {
+            background-color: #c8e1fb;
+        }
+        
+        @media (max-width: 768px) {
+            .establishments-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .establishments-filters {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .filter-group {
+                width: 100%;
+            }
+            
+            .filter-select {
+                width: 100%;
+            }
+            
+            .establishments-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="img/logo.png" alt="Logo Aqui aceita Bitcoin?">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="sobre.html">Sobre nós</a></li>
+                <li><a href="carteiras.html">Carteiras Bitcoin</a></li>
+                <li><a href="cadastro.html">Cadastre seu estabelecimento</a></li>
+                <li><a href="materiais.html">Materiais</a></li>
+                <li><a href="admin.html">Administração</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section class="hero container">
+            <h1>Estabelecimentos em Carambeí</h1>
+            <p>Todos os estabelecimentos que aceitam Bitcoin em Carambeí e região</p>
+        </section>
+        
+        <section class="establishments-container">
+            <div class="establishments-header">
+                <h2 class="establishments-title">Estabelecimentos em Carambeí</h2>
+            </div>
+            
+            <div class="establishments-filters">
+                <div class="filter-group">
+                    <label for="category-filter" class="filter-label">Categoria:</label>
+                    <select id="category-filter" class="filter-select">
+                        <option value="all">Todas</option>
+                        <option value="restaurant">Restaurante</option>
+                        <option value="cafe">Café</option>
+                        <option value="bakery">Padaria</option>
+                        <option value="market">Mercado</option>
+                        <option value="store">Loja</option>
+                        <option value="service">Serviço</option>
+                        <option value="other">Outro</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="status-filter" class="filter-label">Status:</label>
+                    <select id="status-filter" class="filter-select">
+                        <option value="all">Todos</option>
+                        <option value="approved">Aprovados</option>
+                        <option value="pending">Pendentes</option>
+                        <option value="rejected">Rejeitados</option>
+                    </select>
+                </div>
+            </div>
+            
+            <table class="establishments-table">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Categoria</th>
+                        <th>Endereço</th>
+                        <th>Cidade</th>
+                        <th>Status</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="establishments-list">
+                    <!-- Lista de estabelecimentos será carregada dinamicamente via JavaScript -->
+                </tbody>
+            </table>
+            
+            <div id="pagination" class="pagination">
+                <!-- Paginação será gerada dinamicamente via JavaScript -->
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="img/logo.png" alt="Logo Aqui aceita Bitcoin?">
+            </div>
+            <div class="footer-links">
+                <h3>Links Úteis</h3>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="sobre.html">Sobre nós</a></li>
+                    <li><a href="carteiras.html">Carteiras Bitcoin</a></li>
+                    <li><a href="cadastro.html">Cadastre seu estabelecimento</a></li>
+                    <li><a href="materiais.html">Materiais</a></li>
+                    <li><a href="estabelecimentos-carambei.html">Estabelecimentos em Carambeí</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h3>Redes Sociais</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Clube BR⚡LN - Todos os direitos reservados</p>
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const establishmentsList = document.getElementById('establishments-list');
+            const categoryFilter = document.getElementById('category-filter');
+            const statusFilter = document.getElementById('status-filter');
+            const paginationContainer = document.getElementById('pagination');
+            
+            // Obter estabelecimentos do localStorage
+            const establishments = JSON.parse(localStorage.getItem('establishments')) || [];
+            
+            // Filtrar estabelecimentos de Carambeí
+            const carambeíEstablishments = establishments.filter(establishment => 
+                establishment.city && establishment.city.toLowerCase().includes('carambeí')
+            );
+            
+            // Mapear categorias para nomes em português
+            const categoryMap = {
+                'restaurant': 'Restaurante',
+                'cafe': 'Café',
+                'bakery': 'Padaria',
+                'market': 'Mercado',
+                'store': 'Loja',
+                'service': 'Serviço',
+                'other': 'Outro'
+            };
+            
+            // Mapear status para nomes em português e classes CSS
+            const statusMap = {
+                'approved': { text: 'Aprovado', class: 'status-approved' },
+                'pending': { text: 'Pendente', class: 'status-pending' },
+                'rejected': { text: 'Rejeitado', class: 'status-rejected' }
+            };
+            
+            // Configurações de paginação
+            const itemsPerPage = 10;
+            let currentPage = 1;
+            
+            // Função para renderizar a lista de estabelecimentos
+            function renderEstablishments() {
+                // Limpar a lista atual
+                establishmentsList.innerHTML = '';
+                
+                // Aplicar filtros
+                const categoryValue = categoryFilter.value;
+                const statusValue = statusFilter.value;
+                
+                let filteredEstablishments = carambeíEstablishments;
+                
+                if (categoryValue !== 'all') {
+                    filteredEstablishments = filteredEstablishments.filter(establishment => 
+                        establishment.category === categoryValue
+                    );
+                }
+                
+                if (statusValue !== 'all') {
+                    filteredEstablishments = filteredEstablishments.filter(establishment => 
+                        establishment.status === statusValue
+                    );
+                }
+                
+                // Calcular paginação
+                const totalPages = Math.ceil(filteredEstablishments.length / itemsPerPage);
+                const startIndex = (currentPage - 1) * itemsPerPage;
+                const endIndex = startIndex + itemsPerPage;
+                const paginatedEstablishments = filteredEstablishments.slice(startIndex, endIndex);
+                
+                // Renderizar estabelecimentos
+                if (paginatedEstablishments.length > 0) {
+                    paginatedEstablishments.forEach(establishment => {
+                        const row = document.createElement('tr');
+                        
+                        const categoryName = categoryMap[establishment.category] || establishment.category;
+                        const status = statusMap[establishment.status] || { text: establishment.status, class: '' };
+                        
+                        row.innerHTML = `
+                            <td>${establishment.name}</td>
+                            <td>${categoryName}</td>
+                            <td>${establishment.address}</td>
+                            <td>${establishment.city}</td>
+                            <td><span class="establishment-status ${status.class}">${status.text}</span></td>
+                            <td>
+                                <div class="establishment-actions">
+                                    <button class="action-button view" onclick="viewEstablishment('${establishment.id}')">
+                                        <i class="fas fa-eye"></i> Ver
+                                    </button>
+                                </div>
+                            </td>
+                        `;
+                        
+                        establishmentsList.appendChild(row);
+                    });
+                } else {
+                    const emptyRow = document.createElement('tr');
+                    emptyRow.innerHTML = `
+                        <td colspan="6" class="empty-establishments">
+                            <i class="fas fa-store-slash"></i>
+                            <p>Nenhum estabelecimento encontrado com os filtros selecionados.</p>
+                        </td>
+                    `;
+                    establishmentsList.appendChild(emptyRow);
+                }
+                
+                // Renderizar paginação
+                renderPagination(totalPages);
+            }
+            
+            // Função para renderizar a paginação
+            function renderPagination(totalPages) {
+                paginationContainer.innerHTML = '';
+                
+                if (totalPages <= 1) {
+                    return;
+                }
+                
+                // Botão anterior
+                const prevButton = document.createElement('button');
+                prevButton.className = `pagination-button ${currentPage === 1 ? 'disabled' : ''}`;
+                prevButton.innerHTML = '<i class="fas fa-chevron-left"></i>';
+                prevButton.disabled = currentPage === 1;
+                prevButton.addEventListener('click', () => {
+                    if (currentPage > 1) {
+                        currentPage--;
+                        renderEstablishments();
+                    }
+                });
+                paginationContainer.appendChild(prevButton);
+                
+                // Botões de página
+                const maxVisiblePages = 5;
+                let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+                let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+                
+                if (endPage - startPage + 1 < maxVisiblePages) {
+                    startPage = Math.max(1, endPage - maxVisiblePages + 1);
+                }
+                
+                for (let i = startPage; i <= endPage; i++) {
+                    const pageButton = document.createElement('button');
+                    pageButton.className = `pagination-button ${i === currentPage ? 'active' : ''}`;
+                    pageButton.textContent = i;
+                    pageButton.addEventListener('click', () => {
+                        currentPage = i;
+                        renderEstablishments();
+                    });
+                    paginationContainer.appendChild(pageButton);
+                }
+                
+                // Botão próximo
+                const nextButton = document.createElement('button');
+                nextButton.className = `pagination-button ${currentPage === totalPages ? 'disabled' : ''}`;
+                nextButton.innerHTML = '<i class="fas fa-chevron-right"></i>';
+                nextButton.disabled = currentPage === totalPages;
+                nextButton.addEventListener('click', () => {
+                    if (currentPage < totalPages) {
+                        currentPage++;
+                        renderEstablishments();
+                    }
+                });
+                paginationContainer.appendChild(nextButton);
+            }
+            
+            // Adicionar event listeners para os filtros
+            categoryFilter.addEventListener('change', () => {
+                currentPage = 1;
+                renderEstablishments();
+            });
+            
+            statusFilter.addEventListener('change', () => {
+                currentPage = 1;
+                renderEstablishments();
+            });
+            
+            // Função para visualizar detalhes do estabelecimento
+            window.viewEstablishment = function(id) {
+                const establishment = establishments.find(e => e.id === id);
+                if (establishment) {
+                    alert(`Detalhes do estabelecimento: ${establishment.name}\n\nEndereço: ${establishment.address}\nCidade: ${establishment.city}\nCategoria: ${categoryMap[establishment.category] || establishment.category}\nContato: ${establishment.contactName}\nTelefone: ${establishment.contactPhone}\nStatus: ${statusMap[establishment.status]?.text || establishment.status}`);
+                }
+            };
+            
+            // Renderizar estabelecimentos inicialmente
+            renderEstablishments();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aqui aceita Bitcoin? - Administração (Versão Local)</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .admin-tabs {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+        
+        .admin-tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border: 1px solid transparent;
+            border-bottom: none;
+            margin-right: 5px;
+            border-radius: 5px 5px 0 0;
+        }
+        
+        .admin-tab.active {
+            background-color: #f8f9fa;
+            border-color: #ddd;
+            border-bottom-color: #f8f9fa;
+        }
+        
+        .admin-content {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 0 0 5px 5px;
+        }
+        
+        .admin-section {
+            display: none;
+        }
+        
+        .admin-section.active {
+            display: block;
+        }
+        
+        .establishment-list {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        
+        .establishment-list th, .establishment-list td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .establishment-list th {
+            background-color: #f2f2f2;
+        }
+        
+        .btn {
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+        
+        .btn-danger {
+            background-color: #f44336;
+        }
+        
+        .btn-warning {
+            background-color: #ff9800;
+        }
+        
+        .btn-info {
+            background-color: #2196F3;
+        }
+        
+        .log-container {
+            max-height: 400px;
+            overflow-y: auto;
+            background-color: #f5f5f5;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            margin-top: 20px;
+        }
+        
+        .log-entry {
+            margin-bottom: 5px;
+            padding: 5px;
+            border-radius: 3px;
+        }
+        
+        .log-info {
+            background-color: #e3f2fd;
+        }
+        
+        .log-success {
+            background-color: #e8f5e9;
+        }
+        
+        .log-warning {
+            background-color: #fff3e0;
+        }
+        
+        .log-error {
+            background-color: #ffebee;
+        }
+        
+        .notification-list {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .notification-item {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .notification-item:last-child {
+            border-bottom: none;
+        }
+        
+        .notification-date {
+            font-size: 0.8em;
+            color: #666;
+        }
+        
+        .sync-status {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 4px;
+            background-color: #f5f5f5;
+        }
+        
+        .sync-actions {
+            margin-bottom: 20px;
+        }
+        
+        .sync-progress {
+            margin-top: 10px;
+            height: 20px;
+            background-color: #ddd;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .sync-progress-bar {
+            height: 100%;
+            background-color: #4CAF50;
+            width: 0%;
+            transition: width 0.3s;
+        }
+        
+        .audit-filters {
+            margin-bottom: 20px;
+        }
+        
+        .audit-list {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .audit-list th, .audit-list td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .audit-list th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="assets/images/bitcoin-logo.svg" alt="Logo Bitcoin">
+            <h1>Aqui aceita Bitcoin?</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="cadastro.html">Cadastrar Estabelecimento</a></li>
+                <li><a href="admin.html" class="active">Administração</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="admin-container">
+        <h1>Painel de Administração (Versão Local)</h1>
+        <p>Esta é a versão local do painel de administração, otimizada para funcionar diretamente do seu computador sem problemas de comunicação.</p>
+        
+        <div class="admin-tabs">
+            <div class="admin-tab active" data-tab="pending">Estabelecimentos Pendentes</div>
+            <div class="admin-tab" data-tab="approved">Estabelecimentos Aprovados</div>
+            <div class="admin-tab" data-tab="rejected">Estabelecimentos Rejeitados</div>
+            <div class="admin-tab" data-tab="sync">Sincronização OSM</div>
+            <div class="admin-tab" data-tab="notifications">Notificações</div>
+            <div class="admin-tab" data-tab="audit">Auditoria</div>
+        </div>
+        
+        <div class="admin-content">
+            <!-- Estabelecimentos Pendentes -->
+            <div class="admin-section active" id="pending-section">
+                <h2>Estabelecimentos Pendentes</h2>
+                <p>Estabelecimentos que aguardam aprovação para serem exibidos no mapa.</p>
+                
+                <table class="establishment-list" id="pending-list">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Endereço</th>
+                            <th>Contato</th>
+                            <th>Data de Cadastro</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Preenchido via JavaScript -->
+                    </tbody>
+                </table>
+                
+                <div id="pending-empty-message" style="display: none;">
+                    <p>Não há estabelecimentos pendentes no momento.</p>
+                </div>
+            </div>
+            
+            <!-- Estabelecimentos Aprovados -->
+            <div class="admin-section" id="approved-section">
+                <h2>Estabelecimentos Aprovados</h2>
+                <p>Estabelecimentos que foram aprovados e estão sendo exibidos no mapa.</p>
+                
+                <table class="establishment-list" id="approved-list">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Endereço</th>
+                            <th>Contato</th>
+                            <th>Data de Aprovação</th>
+                            <th>Status OSM</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Preenchido via JavaScript -->
+                    </tbody>
+                </table>
+                
+                <div id="approved-empty-message" style="display: none;">
+                    <p>Não há estabelecimentos aprovados no momento.</p>
+                </div>
+            </div>
+            
+            <!-- Estabelecimentos Rejeitados -->
+            <div class="admin-section" id="rejected-section">
+                <h2>Estabelecimentos Rejeitados</h2>
+                <p>Estabelecimentos que foram rejeitados e não serão exibidos no mapa.</p>
+                
+                <table class="establishment-list" id="rejected-list">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Endereço</th>
+                            <th>Contato</th>
+                            <th>Data de Rejeição</th>
+                            <th>Motivo</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Preenchido via JavaScript -->
+                    </tbody>
+                </table>
+                
+                <div id="rejected-empty-message" style="display: none;">
+                    <p>Não há estabelecimentos rejeitados no momento.</p>
+                </div>
+            </div>
+            
+            <!-- Sincronização OSM -->
+            <div class="admin-section" id="sync-section">
+                <h2>Sincronização com OpenStreetMap</h2>
+                <p>Gerencie a sincronização de estabelecimentos aprovados com o OpenStreetMap.</p>
+                
+                <div class="sync-status">
+                    <h3>Status da Sincronização</h3>
+                    <p id="sync-last-date">Última sincronização: Nunca</p>
+                    <p id="sync-status-message">Status: Não iniciado</p>
+                    <p id="sync-pending-count">Estabelecimentos pendentes: 0</p>
+                    
+                    <div class="sync-progress" id="sync-progress-container" style="display: none;">
+                        <div class="sync-progress-bar" id="sync-progress-bar"></div>
+                    </div>
+                </div>
+                
+                <div class="sync-actions">
+                    <button class="btn" id="sync-now-btn">Sincronizar Agora</button>
+                    <button class="btn btn-warning" id="sync-retry-btn" disabled>Tentar Novamente</button>
+                    <button class="btn btn-info" id="sync-configure-btn">Configurar</button>
+                </div>
+                
+                <div id="sync-configure-panel" style="display: none; margin-bottom: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 4px;">
+                    <h3>Configurar API</h3>
+                    <p>Configure a URL da API de integração com o OpenStreetMap.</p>
+                    
+                    <div style="margin-bottom: 10px;">
+                        <label for="api-url-input">URL da API:</label>
+                        <input type="text" id="api-url-input" style="width: 300px; padding: 5px;" value="http://localhost:5000">
+                    </div>
+                    
+                    <button class="btn" id="save-api-url-btn">Salvar</button>
+                    <button class="btn btn-danger" id="cancel-api-url-btn">Cancelar</button>
+                </div>
+                
+                <h3>Logs de Sincronização</h3>
+                <div class="log-container" id="sync-logs">
+                    <!-- Preenchido via JavaScript -->
+                </div>
+            </div>
+            
+            <!-- Notificações -->
+            <div class="admin-section" id="notifications-section">
+                <h2>Notificações</h2>
+                <p>Gerencie as notificações do sistema.</p>
+                
+                <div class="notification-actions" style="margin-bottom: 20px;">
+                    <button class="btn" id="mark-all-read-btn">Marcar Todas como Lidas</button>
+                    <button class="btn btn-danger" id="clear-all-btn">Limpar Todas</button>
+                </div>
+                
+                <div class="notification-list" id="notification-list">
+                    <!-- Preenchido via JavaScript -->
+                </div>
+                
+                <div id="notification-empty-message" style="display: none;">
+                    <p>Não há notificações no momento.</p>
+                </div>
+            </div>
+            
+            <!-- Auditoria -->
+            <div class="admin-section" id="audit-section">
+                <h2>Auditoria</h2>
+                <p>Visualize o histórico de ações realizadas no sistema.</p>
+                
+                <div class="audit-filters">
+                    <label for="audit-filter-type">Filtrar por tipo:</label>
+                    <select id="audit-filter-type">
+                        <option value="all">Todos</option>
+                        <option value="establishment">Estabelecimentos</option>
+                        <option value="sync">Sincronização</option>
+                        <option value="user">Usuário</option>
+                    </select>
+                    
+                    <label for="audit-filter-date" style="margin-left: 20px;">Filtrar por data:</label>
+                    <select id="audit-filter-date">
+                        <option value="all">Todos</option>
+                        <option value="today">Hoje</option>
+                        <option value="week">Última semana</option>
+                        <option value="month">Último mês</option>
+                    </select>
+                    
+                    <button class="btn" id="audit-filter-btn" style="margin-left: 10px;">Filtrar</button>
+                </div>
+                
+                <table class="audit-list" id="audit-list">
+                    <thead>
+                        <tr>
+                            <th>Data/Hora</th>
+                            <th>Tipo</th>
+                            <th>Ação</th>
+                            <th>Usuário</th>
+                            <th>Detalhes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Preenchido via JavaScript -->
+                    </tbody>
+                </table>
+                
+                <div id="audit-empty-message" style="display: none;">
+                    <p>Não há registros de auditoria no momento.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Aqui aceita Bitcoin? - Todos os direitos reservados</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/cadastro-manager.js"></script>
+    <script src="js/auditoria-manager.js"></script>
+    <script src="js/notificacao-manager.js"></script>
+    <script src="js/sincronizacao-osm-service-local.js"></script>
+    <script src="js/sincronizacao-admin.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Gerenciar abas
+            const tabs = document.querySelectorAll('.admin-tab');
+            const sections = document.querySelectorAll('.admin-section');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // Atualizar abas ativas
+                    tabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Atualizar seções ativas
+                    sections.forEach(section => section.classList.remove('active'));
+                    document.getElementById(`${tabId}-section`).classList.add('active');
+                });
+            });
+            
+            // Inicializar gerenciadores
+            if (window.auditoriaManager) {
+                window.auditoriaManager.carregarRegistros();
+            }
+            
+            if (window.notificacaoManager) {
+                window.notificacaoManager.carregarNotificacoes();
+            }
+            
+            // Carregar estabelecimentos
+            carregarEstabelecimentos();
+        });
+        
+        function carregarEstabelecimentos() {
+            // Carregar estabelecimentos pendentes
+            const pendingList = JSON.parse(localStorage.getItem('pendingEstablishments') || '[]');
+            const pendingTable = document.getElementById('pending-list').getElementsByTagName('tbody')[0];
+            const pendingEmptyMessage = document.getElementById('pending-empty-message');
+            
+            if (pendingList.length > 0) {
+                pendingTable.innerHTML = '';
+                pendingEmptyMessage.style.display = 'none';
+                
+                pendingList.forEach(establishment => {
+                    const row = pendingTable.insertRow();
+                    
+                    row.insertCell(0).textContent = establishment.name;
+                    row.insertCell(1).textContent = establishment.address || 'N/A';
+                    row.insertCell(2).textContent = establishment.phone || 'N/A';
+                    row.insertCell(3).textContent = new Date(establishment.createdAt).toLocaleDateString();
+                    
+                    const actionsCell = row.insertCell(4);
+                    const approveBtn = document.createElement('button');
+                    approveBtn.className = 'btn';
+                    approveBtn.textContent = 'Aprovar';
+                    approveBtn.onclick = function() {
+                        approveEstablishment(establishment.id);
+                    };
+                    
+                    const rejectBtn = document.createElement('button');
+                    rejectBtn.className = 'btn btn-danger';
+                    rejectBtn.textContent = 'Rejeitar';
+                    rejectBtn.onclick = function() {
+                        rejectEstablishment(establishment.id);
+                    };
+                    
+                    actionsCell.appendChild(approveBtn);
+                    actionsCell.appendChild(rejectBtn);
+                });
+            } else {
+                pendingTable.innerHTML = '';
+                pendingEmptyMessage.style.display = 'block';
+            }
+            
+            // Carregar estabelecimentos aprovados
+            const approvedList = JSON.parse(localStorage.getItem('approvedEstablishments') || '[]');
+            const approvedTable = document.getElementById('approved-list').getElementsByTagName('tbody')[0];
+            const approvedEmptyMessage = document.getElementById('approved-empty-message');
+            
+            if (approvedList.length > 0) {
+                approvedTable.innerHTML = '';
+                approvedEmptyMessage.style.display = 'none';
+                
+                approvedList.forEach(establishment => {
+                    const row = approvedTable.insertRow();
+                    
+                    row.insertCell(0).textContent = establishment.name;
+                    row.insertCell(1).textContent = establishment.address || 'N/A';
+                    row.insertCell(2).textContent = establishment.phone || 'N/A';
+                    row.insertCell(3).textContent = new Date(establishment.approvedAt).toLocaleDateString();
+                    
+                    const osmStatusCell = row.insertCell(4);
+                    if (establishment.osm_id) {
+                        osmStatusCell.textContent = 'Sincronizado';
+                        osmStatusCell.style.color = 'green';
+                    } else {
+                        osmStatusCell.textContent = 'Pendente';
+                        osmStatusCell.style.color = 'orange';
+                    }
+                    
+                    const actionsCell = row.insertCell(5);
+                    const editBtn = document.createElement('button');
+                    editBtn.className = 'btn btn-info';
+                    editBtn.textContent = 'Editar';
+                    editBtn.onclick = function() {
+                        editEstablishment(establishment.id);
+                    };
+                    
+                    const removeBtn = document.createElement('button');
+                    removeBtn.className = 'btn btn-danger';
+                    removeBtn.textContent = 'Remover';
+                    removeBtn.onclick = function() {
+                        removeEstablishment(establishment.id);
+                    };
+                    
+                    actionsCell.appendChild(editBtn);
+                    actionsCell.appendChild(removeBtn);
+                });
+            } else {
+                approvedTable.innerHTML = '';
+                approvedEmptyMessage.style.display = 'block';
+            }
+            
+            // Carregar estabelecimentos rejeitados
+            const rejectedList = JSON.parse(localStorage.getItem('rejectedEstablishments') || '[]');
+            const rejectedTable = document.getElementById('rejected-list').getElementsByTagName('tbody')[0];
+            const rejectedEmptyMessage = document.getElementById('rejected-empty-message');
+            
+            if (rejectedList.length > 0) {
+                rejectedTable.innerHTML = '';
+                rejectedEmptyMessage.style.display = 'none';
+                
+                rejectedList.forEach(establishment => {
+                    const row = rejectedTable.insertRow();
+                    
+                    row.insertCell(0).textContent = establishment.name;
+                    row.insertCell(1).textContent = establishment.address || 'N/A';
+                    row.insertCell(2).textContent = establishment.phone || 'N/A';
+                    row.insertCell(3).textContent = new Date(establishment.rejectedAt).toLocaleDateString();
+                    row.insertCell(4).textContent = establishment.rejectReason || 'Não especificado';
+                    
+                    const actionsCell = row.insertCell(5);
+                    const reconsiderBtn = document.createElement('button');
+                    reconsiderBtn.className = 'btn';
+                    reconsiderBtn.textContent = 'Reconsiderar';
+                    reconsiderBtn.onclick = function() {
+                        reconsiderEstablishment(establishment.id);
+                    };
+                    
+                    const removeBtn = document.createElement('button');
+                    removeBtn.className = 'btn btn-danger';
+                    removeBtn.textContent = 'Remover';
+                    removeBtn.onclick = function() {
+                        removeRejectedEstablishment(establishment.id);
+                    };
+                    
+                    actionsCell.appendChild(reconsiderBtn);
+                    actionsCell.appendChild(removeBtn);
+                });
+            } else {
+                rejectedTable.innerHTML = '';
+                rejectedEmptyMessage.style.display = 'block';
+            }
+        }
+        
+        function approveEstablishment(id) {
+            const pendingList = JSON.parse(localStorage.getItem('pendingEstablishments') || '[]');
+            const approvedList = JSON.parse(localStorage.getItem('approvedEstablishments') || '[]');
+            
+            const establishmentIndex = pendingList.findIndex(e => e.id === id);
+            if (establishmentIndex !== -1) {
+                const establishment = pendingList[establishmentIndex];
+                establishment.approvedAt = new Date().toISOString();
+                establishment.status = 'approved';
+                
+                approvedList.push(establishment);
+                pendingList.splice(establishmentIndex, 1);
+                
+                localStorage.setItem('pendingEstablishments', JSON.stringify(pendingList));
+                localStorage.setItem('approvedEstablishments', JSON.stringify(approvedList));
+                
+                // Registrar ação na auditoria
+                if (window.auditoriaManager) {
+                    window.auditoriaManager.registrarAcao('Estabelecimento', `Aprovado: ${establishment.name}`, 'Administrador');
+                }
+                
+                // Adicionar notificação
+                if (window.notificacaoManager) {
+                    window.notificacaoManager.adicionarNotificacao(`Estabelecimento aprovado: ${establishment.name}`);
+                }
+                
+                carregarEstabelecimentos();
+            }
+        }
+        
+        function rejectEstablishment(id) {
+            const reason = prompt('Por favor, informe o motivo da rejeição:');
+            if (reason === null) return; // Usuário cancelou
+            
+            const pendingList = JSON.parse(localStorage.getItem('pendingEstablishments') || '[]');
+            const rejectedList = JSON.parse(localStorage.getItem('rejectedEstablishments') || '[]');
+            
+            const establishmentIndex = pendingList.findIndex(e => e.id === id);
+            if (establishmentIndex !== -1) {
+                const establishment = pendingList[establishmentIndex];
+                establishment.rejectedAt = new Date().toISOString();
+                establishment.rejectReason = reason;
+                establishment.status = 'rejected';
+                
+                rejectedList.push(establishment);
+                pendingList.splice(establishmentIndex, 1);
+                
+                localStorage.setItem('pendingEstablishments', JSON.stringify(pendingList));
+                localStorage.setItem('rejectedEstablishments', JSON.stringify(rejectedList));
+                
+                // Registrar ação na auditoria
+                if (window.auditoriaManager) {
+                    window.auditoriaManager.registrarAcao('Estabelecimento', `Rejeitado: ${establishment.name}`, 'Administrador');
+                }
+                
+                // Adicionar notificação
+                if (window.notificacaoManager) {
+                    window.notificacaoManager.adicionarNotificacao(`Estabelecimento rejeitado: ${establishment.name}`);
+                }
+                
+                carregarEstabelecimentos();
+            }
+        }
+        
+        function editEstablishment(id) {
+            alert('Funcionalidade de edição ainda não implementada.');
+        }
+        
+        function removeEstablishment(id) {
+            if (!confirm('Tem certeza que deseja remover este estabelecimento?')) return;
+            
+            const approvedList = JSON.parse(localStorage.getItem('approvedEstablishments') || '[]');
+            
+            const establishmentIndex = approvedList.findIndex(e => e.id === id);
+            if (establishmentIndex !== -1) {
+                const establishment = approvedList[establishmentIndex];
+                approvedList.splice(establishmentIndex, 1);
+                
+                localStorage.setItem('approvedEstablishments', JSON.stringify(approvedList));
+                
+                // Registrar ação na auditoria
+                if (window.auditoriaManager) {
+                    window.auditoriaManager.registrarAcao('Estabelecimento', `Removido: ${establishment.name}`, 'Administrador');
+                }
+                
+                // Adicionar notificação
+                if (window.notificacaoManager) {
+                    window.notificacaoManager.adicionarNotificacao(`Estabelecimento removido: ${establishment.name}`);
+                }
+                
+                carregarEstabelecimentos();
+            }
+        }
+        
+        function reconsiderEstablishment(id) {
+            const rejectedList = JSON.parse(localStorage.getItem('rejectedEstablishments') || '[]');
+            const pendingList = JSON.parse(localStorage.getItem('pendingEstablishments') || '[]');
+            
+            const establishmentIndex = rejectedList.findIndex(e => e.id === id);
+            if (establishmentIndex !== -1) {
+                const establishment = rejectedList[establishmentIndex];
+                delete establishment.rejectedAt;
+                delete establishment.rejectReason;
+                establishment.status = 'pending';
+                
+                pendingList.push(establishment);
+                rejectedList.splice(establishmentIndex, 1);
+                
+                localStorage.setItem('rejectedEstablishments', JSON.stringify(rejectedList));
+                localStorage.setItem('pendingEstablishments', JSON.stringify(pendingList));
+                
+                // Registrar ação na auditoria
+                if (window.auditoriaManager) {
+                    window.auditoriaManager.registrarAcao('Estabelecimento', `Reconsiderado: ${establishment.name}`, 'Administrador');
+                }
+                
+                // Adicionar notificação
+                if (window.notificacaoManager) {
+                    window.notificacaoManager.adicionarNotificacao(`Estabelecimento reconsiderado: ${establishment.name}`);
+                }
+                
+                carregarEstabelecimentos();
+            }
+        }
+        
+        function removeRejectedEstablishment(id) {
+            if (!confirm('Tem certeza que deseja remover permanentemente este estabelecimento?')) return;
+            
+            const rejectedList = JSON.parse(localStorage.getItem('rejectedEstablishments') || '[]');
+            
+            const establishmentIndex = rejectedList.findIndex(e => e.id === id);
+            if (establishmentIndex !== -1) {
+                const establishment = rejectedList[establishmentIndex];
+                rejectedList.splice(establishmentIndex, 1);
+                
+                localStorage.setItem('rejectedEstablishments', JSON.stringify(rejectedList));
+                
+                // Registrar ação na auditoria
+                if (window.auditoriaManager) {
+                    window.auditoriaManager.registrarAcao('Estabelecimento', `Removido permanentemente: ${establishment.name}`, 'Administrador');
+                }
+                
+                // Adicionar notificação
+                if (window.notificacaoManager) {
+                    window.notificacaoManager.adicionarNotificacao(`Estabelecimento removido permanentemente: ${establishment.name}`);
+                }
+                
+                carregarEstabelecimentos();
+            }
+        }
+    </script>
+</body>
+</html>

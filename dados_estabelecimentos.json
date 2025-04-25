@@ -1,0 +1,155 @@
+{
+  "Ponta Grossa": [
+    {
+      "id": 3652610657,
+      "tipo": "node",
+      "nome": "Frederica´s Koffiehuis",
+      "lat": -24.9465904,
+      "lon": -50.1206567,
+      "lightning": true,
+      "onchain": true,
+      "tags": {
+        "addr:city": "Carambeí",
+        "addr:housenumber": "1010",
+        "addr:postcode": "84145-000",
+        "addr:street": "Avenida dos Pioneiros",
+        "addr:suburb": "Centro",
+        "amenity": "cafe",
+        "check_date": "2025-04-18",
+        "check_date:currency:XBT": "2025-04-18",
+        "cuisine": "coffee_shop;tortas;empadão",
+        "currency:XBT": "yes",
+        "name": "Frederica´s Koffiehuis",
+        "payment:lightning": "yes",
+        "payment:lightning_contactless": "no",
+        "payment:onchain": "yes",
+        "survey:date": "2025-04-17"
+      }
+    },
+    {
+      "id": 12422409237,
+      "tipo": "node",
+      "nome": "Dr. Adrian Gómez Collantes",
+      "lat": -24.9523276,
+      "lon": -50.1147127,
+      "lightning": true,
+      "onchain": true,
+      "tags": {
+        "addr:city": "Carambeí",
+        "addr:housenumber": "426",
+        "addr:postcode": "84145-000",
+        "addr:street": "Rua Ouro Branco",
+        "check_date": "2024-12-14",
+        "currency:XBT": "yes",
+        "healthcare": "alternative",
+        "healthcare:speciality": "acupuncture;aromatherapy",
+        "name": "Dr. Adrian Gómez Collantes",
+        "operator": "Dr. Adrian Gómez Collantes",
+        "payment:lightning": "yes",
+        "payment:lightning_contactless": "yes",
+        "payment:onchain": "yes",
+        "phone": "+55 42 99818 4340"
+      }
+    },
+    {
+      "id": 12743115298,
+      "tipo": "node",
+      "nome": "DeltaD Engenharia e Locações",
+      "lat": -24.9462385,
+      "lon": -50.1212495,
+      "lightning": true,
+      "onchain": true,
+      "tags": {
+        "addr:city": "Carambeí",
+        "addr:housenumber": "00",
+        "addr:postcode": "84145000",
+        "addr:street": "Avenida dos Pioneiros",
+        "addr:suburb": "Centro",
+        "check_date:currency:XBT": "2025-04-09",
+        "construction": "Casas",
+        "currency:XBT": "yes",
+        "name": "DeltaD Engenharia e Locações",
+        "opening_hours": "Mo-Su 07:30-18:00",
+        "payment:bitcoin": "yes",
+        "payment:lightning": "yes",
+        "payment:onchain": "yes",
+        "rental": "andaimes",
+        "shop": "rental",
+        "survey:date": "2025-04-09"
+      }
+    },
+    {
+      "id": 12762712410,
+      "tipo": "node",
+      "nome": "Clinica de Olhos Dr Garletti",
+      "lat": -25.0897284,
+      "lon": -50.1611085,
+      "lightning": false,
+      "onchain": false,
+      "tags": {
+        "currency:XBT": "yes",
+        "name": "Clinica de Olhos Dr Garletti",
+        "payment:coinos": "yes"
+      }
+    },
+    {
+      "id": 12763150932,
+      "tipo": "node",
+      "nome": "Frederica´s Koffiehuis",
+      "lat": -25.0896026,
+      "lon": -50.1603558,
+      "lightning": true,
+      "onchain": true,
+      "tags": {
+        "addr:city": "Ponta Grossa",
+        "addr:housenumber": "607",
+        "addr:postcode": "84010200",
+        "addr:street": "Rua Doutor Francisco Búrzio",
+        "addr:suburb": "Centro",
+        "amenity": "cafe",
+        "check_date": "2025-04-18",
+        "check_date:currency:XBT": "2025-04-18",
+        "cuisine": "coffee_shop;tortas;empadão",
+        "currency:XBT": "yes",
+        "name": "Frederica´s Koffiehuis",
+        "payment:lightning": "yes",
+        "payment:lightning_contactless": "no",
+        "payment:onchain": "yes",
+        "survey:date": "2025-04-17"
+      }
+    }
+  ],
+  "Outros": [
+    {
+      "id": 12560164881,
+      "tipo": "node",
+      "nome": "Alessandro Kremer Treinamentos Ltda.",
+      "lat": -24.7889362,
+      "lon": -49.9932671,
+      "lightning": true,
+      "onchain": true,
+      "tags": {
+        "addr:city": "castro",
+        "addr:housenumber": "210",
+        "addr:postcode": "84172-410",
+        "addr:street": "Rua General Almada",
+        "addr:suburb": "Vila Rio Branco",
+        "check_date": "2025-02-05",
+        "currency:BRL": "yes",
+        "currency:XBT": "yes",
+        "description": "Treinamentos , Palestras e Consultorias em Administração de Empresas, Marketing Digital, cryptomoedas e Educação Empreendedora\n\nInstagram : @profkremer",
+        "name": "Alessandro Kremer Treinamentos Ltda.",
+        "office": "educational_institution",
+        "opening_hours": "Mo-Fr 08:00-18:00",
+        "operator": "@brP2Pcripto",
+        "payment:coinos": "yes",
+        "payment:cryptocurrencies": "yes",
+        "payment:lightning": "yes",
+        "payment:lightning_contactless": "yes",
+        "payment:onchain": "yes",
+        "phone": "+55 42 98870-9248",
+        "website": "www.facebook.com/alessandro.kremer"
+      }
+    }
+  ]
+}
