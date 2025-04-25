@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     container.innerHTML = '<p>Carregando estabelecimentos...</p>';
 
     try {
-        const response = await fetch('http://localhost:5000/api/estabelecimentos');
+        const response = await fetch('/api/estabelecimentos');
         const data = await response.json();
 
         if (data.length === 0) {

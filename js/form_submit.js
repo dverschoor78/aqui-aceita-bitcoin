@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         try {
-            const response = await fetch('http://localhost:5000/api/estabelecimentos', {
+            const response = await fetch('/api/estabelecimentos', {
                 method: 'POST',
                 body: formData
             });
