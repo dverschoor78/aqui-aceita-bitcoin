@@ -1,0 +1,387 @@
+.wallets-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+/* Melhorias na seção "Escolha uma carteira" */
+.wallets-selection h3,
+.wallet-setup h3,
+.wallet-comparison h3 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 1.5rem;
+    position: relative;
+    padding-bottom: 0.8rem;
+}
+
+.wallets-selection h3::after,
+.wallet-setup h3::after,
+.wallet-comparison h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background-color: var(--primary-color);
+    border-radius: 3px;
+}
+
+.wallet-options {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.wallet-option {
+    background-color: white;
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    box-shadow: var(--box-shadow);
+    text-align: center;
+    transition: var(--transition);
+    border-top: 5px solid var(--primary-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.wallet-option:nth-child(1) {
+    border-top-color: #f7931a; /* Bitcoin orange for Coinos */
+}
+
+.wallet-option:nth-child(2) {
+    border-top-color: #4a90e2; /* Blue for WOS */
+}
+
+.wallet-option:nth-child(3) {
+    border-top-color: #6b45bc; /* Purple for Strike */
+}
+
+.wallet-option:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+}
+
+.wallet-option::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+    z-index: 1;
+}
+
+.wallet-logo {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f9f9f9;
+    border-radius: 50%;
+    padding: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.wallet-logo img {
+    max-width: 80%;
+    max-height: 80%;
+    object-fit: contain;
+}
+
+.wallet-option h4 {
+    color: var(--primary-color);
+    margin-bottom: 0.8rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.wallet-features {
+    display: flex;
+    justify-content: center;
+    gap: 0.7rem;
+    margin-bottom: 1.2rem;
+    flex-wrap: wrap;
+}
+
+.feature {
+    background-color: var(--light-gray);
+    padding: 0.4rem 0.9rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.feature::before {
+    content: '✓';
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+.wallet-option p {
+    margin-bottom: 1.8rem;
+    min-height: 3em;
+    color: #555;
+    line-height: 1.5;
+}
+
+.wallet-actions {
+    display: flex;
+    justify-content: center;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+}
+
+.btn-wallet {
+    background-color: var(--primary-color);
+    padding: 0.7rem 1.2rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+.btn-wallet:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn-wallet-info {
+    background-color: var(--secondary-color);
+    padding: 0.7rem 1.2rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+.btn-wallet-info:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Melhorias na seção "Crie sua conta" */
+.wallet-tagline {
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin-bottom: 2.5rem;
+    color: var(--primary-color);
+    background-color: rgba(247, 147, 26, 0.1);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    border-left: 4px solid var(--primary-color);
+}
+
+.setup-steps {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+    margin-top: 2rem;
+}
+
+.setup-step {
+    display: flex;
+    gap: 1.2rem;
+    background-color: white;
+    padding: 1.8rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    align-items: flex-start;
+    transition: all 0.3s ease;
+    border-left: 4px solid transparent;
+}
+
+.setup-step:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.setup-step:nth-child(1) {
+    border-left-color: #f7931a;
+}
+
+.setup-step:nth-child(2) {
+    border-left-color: #4a90e2;
+}
+
+.setup-step:nth-child(3) {
+    border-left-color: #6b45bc;
+}
+
+.setup-step:nth-child(4) {
+    border-left-color: #4CAF50;
+}
+
+.step-number {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #f7931a 100%);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.4rem;
+    flex-shrink: 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.step-content h4 {
+    color: var(--primary-color);
+    margin-bottom: 0.7rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.step-content p {
+    color: #555;
+    line-height: 1.5;
+}
+
+/* Melhorias na seção "Comparação de carteiras" */
+.wallet-comparison {
+    margin-top: 3.5rem;
+}
+
+.comparison-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background-color: white;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+}
+
+.comparison-table th,
+.comparison-table td {
+    padding: 1.2rem;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.comparison-table th {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #f7931a 100%);
+    color: white;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.comparison-table th:first-child {
+    text-align: left;
+}
+
+.comparison-table td:first-child {
+    text-align: left;
+    font-weight: 500;
+    color: #333;
+}
+
+.comparison-table tr:last-child td {
+    border-bottom: none;
+}
+
+.comparison-table tr:nth-child(even) {
+    background-color: rgba(247, 147, 26, 0.05);
+}
+
+.comparison-table tr:hover {
+    background-color: rgba(247, 147, 26, 0.1);
+}
+
+/* Estilos para os checkmarks na tabela */
+.comparison-table td:not(:first-child) {
+    font-weight: 500;
+}
+
+.comparison-table td:not(:first-child):contains("✓") {
+    color: #4CAF50;
+    font-size: 1.2rem;
+}
+
+/* Estilos para as estrelas de avaliação */
+.comparison-table tr:nth-child(4) td:not(:first-child) {
+    color: #f7931a;
+    font-size: 1.1rem;
+}
+
+.wallet-details {
+    margin-top: 3.5rem;
+}
+
+.wallet-detail-section {
+    background-color: var(--light-gray);
+    padding: 2.5rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 2.5rem;
+    box-shadow: var(--box-shadow);
+    border-top: 5px solid var(--primary-color);
+}
+
+.wallet-detail-section h3 {
+    color: var(--primary-color);
+    margin-bottom: 1.8rem;
+    text-align: center;
+    font-size: 1.4rem;
+}
+
+.wallet-detail-steps h4 {
+    color: var(--primary-color);
+    margin: 1.8rem 0 1.2rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.wallet-detail-steps h4::before {
+    content: '→';
+    color: var(--primary-color);
+}
+
+.wallet-detail-steps ol {
+    padding-left: 1.8rem;
+}
+
+.wallet-detail-steps li {
+    margin-bottom: 0.8rem;
+    line-height: 1.5;
+    color: #444;
+}
+
+/* Modificação para empilhar as sub-seções uma sobre a outra */
+@media (min-width: 768px) {
+    .wallets-container {
+        grid-template-columns: 1fr; /* Alterado de 1fr 1fr para 1fr */
+    }
+    
+    .wallet-options {
+        grid-template-columns: repeat(3, 1fr); /* Mantido para mostrar as 3 carteiras lado a lado */
+    }
+    
+    .setup-steps {
+        grid-template-columns: repeat(2, 1fr); /* Mantido para mostrar 2 passos por linha */
+    }
+}
+
+@media (min-width: 1024px) {
+    .setup-steps {
+        grid-template-columns: repeat(4, 1fr); /* Mantido para mostrar os 4 passos lado a lado */
+    }
+}
