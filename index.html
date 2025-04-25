@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aqui aceita Bitcoin? - Clube BR⚡LN</title>
+    <title>Materiais de Divulgação - Aqui aceita Bitcoin?</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="css/btcmap-flags.css">
     <style>
         :root {
@@ -48,846 +49,811 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
         }
-
-        .logo {
-            height: 50px;
-        }
-
-        .logo img {
-            height: 100%;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        nav li {
-            margin: 0 15px;
-        }
-
-        nav a {
-            color: var(--dark-gray);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-            padding: 5px 0;
-            position: relative;
-        }
-
-        nav a:hover {
-            color: var(--bitcoin-orange);
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: var(--bitcoin-orange);
-            transition: width 0.3s ease;
-        }
-
-        nav a:hover::after {
-            width: 100%;
-        }
-
-        .hero {
-            text-align: center;
-            padding: 60px 20px;
-            background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
-            border-radius: var(--border-radius);
-            margin-bottom: 40px;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            color: var(--dark-gray);
-            margin-bottom: 15px;
-            font-weight: 700;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            color: var(--medium-gray);
-            margin-bottom: 30px;
-        }
-
-        .cta-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin: 30px 0;
-        }
-
-        .cta-button {
-            padding: 12px 24px;
-            background-color: var(--bitcoin-orange);
-            color: white;
-            border: none;
-            border-radius: var(--border-radius);
-            font-size: 1.1em;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .cta-button:hover {
-            background-color: var(--bitcoin-orange-dark);
-            transform: translateY(-3px);
-            box-shadow: 0 4px 12px rgba(247, 147, 26, 0.3);
-            color: white;
-        }
-
+        
         .section-title {
             text-align: center;
             color: var(--bitcoin-orange);
             margin-bottom: 10px;
-            font-size: 2.2em;
-            font-weight: 700;
+            font-size: 2em;
         }
-
+        
         .section-subtitle {
             text-align: center;
-            margin-bottom: 30px;
-            font-size: 1.2em;
-            color: var(--medium-gray);
-        }
-
-        .steps-container {
-            max-width: 1200px;
-            margin: 50px auto;
-            padding: 40px;
-            background-color: white;
-            border-radius: var(--border-radius);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-
-        .steps-title {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .steps-title h2 {
-            color: var(--bitcoin-orange);
-            font-size: 2.2em;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-
-        .steps-title p {
-            color: var(--medium-gray);
-            font-size: 1.1em;
-        }
-
-        .steps-flow {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            margin-top: 30px;
-        }
-
-        .step-item {
-            flex: 1;
-            min-width: 300px;
-            padding: 30px;
-            margin: 15px;
-            background-color: var(--light-gray);
-            border-radius: var(--border-radius);
-            text-align: center;
-            position: relative;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .step-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-        }
-
-        .step-number {
-            position: absolute;
-            top: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 40px;
-            height: 40px;
-            background-color: var(--bitcoin-orange);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 1.2em;
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .step-icon {
-            font-size: 2.5em;
-            color: var(--bitcoin-orange);
-            margin: 20px 0 15px;
-        }
-
-        .step-title {
-            font-size: 1.3em;
-            font-weight: 600;
-            margin-bottom: 15px;
-            color: var(--dark-gray);
-        }
-
-        .step-description {
-            color: var(--medium-gray);
             margin-bottom: 20px;
+            font-size: 1.2em;
+            color: #555;
         }
-
-        .btcmap-container {
-            width: 100%;
-            height: 500px;
-            margin: 30px 0;
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .btcmap-iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .featured-establishments {
-            margin: 60px 0;
-        }
-
-        .featured-establishments h3 {
-            color: var(--bitcoin-orange);
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 1.8em;
-            font-weight: 600;
-        }
-
-        .establishment-cards {
+        
+        .intro-section {
             display: flex;
             flex-wrap: wrap;
             gap: 30px;
-            justify-content: center;
+            margin-bottom: 60px;
+            align-items: center;
         }
-
-        .establishment-card {
+        
+        .intro-content {
             flex: 1;
             min-width: 300px;
-            max-width: 380px;
-            background-color: white;
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-
-        .establishment-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        
+        .intro-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
         }
-
-        .establishment-image {
-            height: 200px;
-            background-size: cover;
-            background-position: center;
+        
+        .intro-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .intro-title {
+            font-size: 1.8em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .intro-text {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .materials-container {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .materials-tabs {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+        
+        .tab-button {
+            padding: 10px 20px;
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #555;
+            transition: all 0.3s ease;
+        }
+        
+        .tab-button:hover {
+            color: var(--bitcoin-orange);
+        }
+        
+        .tab-button.active {
+            color: var(--bitcoin-orange);
+            border-bottom-color: var(--bitcoin-orange);
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 20px 0;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .whatsapp-message {
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
             position: relative;
         }
-
-        .establishment-image::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 50%;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
-        }
-
-        .establishment-details {
-            padding: 25px;
-        }
-
-        .establishment-name {
-            font-size: 1.4em;
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: var(--dark-gray);
-        }
-
-        .establishment-category {
-            color: var(--bitcoin-orange);
-            font-weight: 500;
+        
+        .whatsapp-message-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 15px;
-            display: inline-block;
-            padding: 5px 10px;
-            background-color: rgba(247, 147, 26, 0.1);
-            border-radius: 15px;
-            font-size: 0.9em;
         }
-
-        .establishment-address {
-            color: var(--medium-gray);
-            margin-bottom: 20px;
-            display: flex;
-            align-items: flex-start;
-            gap: 8px;
+        
+        .whatsapp-message-title {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #333;
         }
-
-        .establishment-address i {
-            color: var(--bitcoin-orange);
-            margin-top: 4px;
+        
+        .whatsapp-message-content {
+            color: #333;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            white-space: pre-line;
         }
-
-        .establishment-payment {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
-            flex-wrap: wrap;
-        }
-
-        .payment-method {
-            padding: 5px 12px;
-            border-radius: 20px;
+        
+        .copy-button {
+            background-color: var(--bitcoin-orange);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 15px;
+            cursor: pointer;
             font-size: 0.9em;
             display: flex;
             align-items: center;
             gap: 5px;
-            font-weight: 500;
+            transition: all 0.3s ease;
         }
-
-        .payment-method.lightning {
-            background-color: rgba(61, 154, 232, 0.1);
-            color: var(--lightning-blue);
+        
+        .copy-button:hover {
+            background-color: var(--bitcoin-orange-dark);
         }
-
-        .payment-method.onchain {
-            background-color: rgba(40, 167, 69, 0.1);
-            color: var(--onchain-green);
-        }
-
-        .payment-method.contactless {
-            background-color: rgba(111, 66, 193, 0.1);
-            color: var(--contactless-purple);
-        }
-
-        .quick-form {
-            max-width: 800px;
-            margin: 60px auto;
-            padding: 40px;
-            background-color: white;
-            border-radius: var(--border-radius);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-
-        .quick-form h3 {
-            color: var(--bitcoin-orange);
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 1.8em;
-            font-weight: 600;
-        }
-
-        .form-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-
-        .form-group {
-            flex: 1;
-            min-width: 200px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: var(--dark-gray);
-        }
-
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 12px 15px;
+        
+        .material-card {
             border: 1px solid #ddd;
-            border-radius: var(--border-radius);
-            font-size: 1em;
-            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-
-        .form-group input:focus, .form-group select:focus {
-            border-color: var(--bitcoin-orange);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(247, 147, 26, 0.2);
+        
+        .material-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
         }
-
-        .submit-btn {
-            display: block;
-            width: 100%;
-            padding: 14px;
+        
+        .material-card-header {
+            background-color: var(--bitcoin-orange);
+            color: white;
+            padding: 15px;
+        }
+        
+        .material-card-title {
+            margin: 0;
+            font-size: 1.2em;
+        }
+        
+        .material-card-content {
+            padding: 15px;
+        }
+        
+        .material-card-description {
+            color: #555;
+            margin-bottom: 15px;
+        }
+        
+        .material-card-footer {
+            padding: 15px;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .download-button {
             background-color: var(--bitcoin-orange);
             color: white;
             border: none;
-            border-radius: var(--border-radius);
-            font-size: 1.1em;
-            font-weight: 600;
+            border-radius: 4px;
+            padding: 8px 15px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 25px;
-        }
-
-        .submit-btn:hover {
-            background-color: var(--bitcoin-orange-dark);
-            transform: translateY(-3px);
-            box-shadow: 0 4px 12px rgba(247, 147, 26, 0.3);
-        }
-
-        footer {
-            background-color: var(--dark-gray);
-            color: white;
-            padding: 50px 0 20px;
-            margin-top: 60px;
-        }
-
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
-
-        .footer-section {
-            flex: 1;
-            min-width: 250px;
-            margin-bottom: 30px;
-        }
-
-        .footer-section h4 {
-            color: var(--bitcoin-orange);
-            margin-bottom: 20px;
-            font-size: 1.2em;
-            font-weight: 600;
-        }
-
-        .footer-section ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .footer-section li {
-            margin-bottom: 10px;
-        }
-
-        .footer-section a {
-            color: #ddd;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-section a:hover {
-            color: var(--bitcoin-orange);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 15px;
-        }
-
-        .social-links a {
+            font-size: 0.9em;
             display: flex;
             align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
+            gap: 5px;
             transition: all 0.3s ease;
+            text-decoration: none;
         }
-
-        .social-links a:hover {
-            background-color: var(--bitcoin-orange);
-            transform: translateY(-3px);
+        
+        .download-button:hover {
+            background-color: var(--bitcoin-orange-dark);
         }
-
-        .copyright {
+        
+        .material-preview {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .case-study {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .case-study-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .case-study-icon {
+            font-size: 2em;
+            color: var(--bitcoin-orange);
+            margin-right: 15px;
+        }
+        
+        .case-study-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin: 0;
+        }
+        
+        .case-study-content {
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        .case-study-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .case-study-stat {
+            flex: 1;
+            min-width: 150px;
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             text-align: center;
-            padding-top: 20px;
-            margin-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #aaa;
+        }
+        
+        .case-study-stat-value {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: var(--bitcoin-orange);
+            margin-bottom: 5px;
+        }
+        
+        .case-study-stat-label {
+            color: #666;
             font-size: 0.9em;
         }
-
-        .bitcoin-logo {
-            height: 20px;
-            vertical-align: middle;
-            margin-right: 5px;
+        
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
         }
-
-        @media (max-width: 992px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .steps-flow {
-                flex-direction: column;
-            }
-
-            .step-item {
-                margin-bottom: 40px;
-            }
+        
+        .resource-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-
+        
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+        
+        .resource-card-header {
+            background-color: var(--bitcoin-orange);
+            color: white;
+            padding: 15px;
+        }
+        
+        .resource-card-title {
+            margin: 0;
+            font-size: 1.2em;
+        }
+        
+        .resource-card-content {
+            padding: 15px;
+        }
+        
+        .resource-card-description {
+            color: #555;
+            margin-bottom: 15px;
+        }
+        
+        .resource-card-footer {
+            padding: 15px;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
         @media (max-width: 768px) {
-            .header-container {
+            .materials-tabs {
                 flex-direction: column;
-                padding: 10px 20px;
+                border-bottom: none;
             }
-
-            .logo {
-                margin-bottom: 15px;
+            
+            .tab-button {
+                border-bottom: 1px solid #ddd;
+                text-align: left;
+                padding: 15px;
             }
-
-            nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
+            
+            .tab-button.active {
+                border-bottom: 1px solid #ddd;
+                border-left: 3px solid var(--bitcoin-orange);
             }
-
-            nav li {
-                margin: 5px 10px;
-            }
-
-            .hero {
-                padding: 40px 20px;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .cta-button {
-                width: 100%;
-                max-width: 300px;
-                justify-content: center;
-            }
-
-            .steps-container {
-                padding: 30px 20px;
-            }
-
-            .form-row {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .footer-container {
+            
+            .case-study-stats {
                 flex-direction: column;
             }
-        }
-
-        /* Esconder o contador de estabelecimentos */
-        .btcmap-counter {
-            display: none !important;
+            
+            .resources-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .intro-section {
+                flex-direction: column-reverse;
+            }
         }
     </style>
 </head>
 <body>
     <header>
-        <div class="header-container">
-            <div class="logo">
-                <img src="img/logos/logo.png" alt="Logo Aqui aceita Bitcoin?" onerror="this.src='https://via.placeholder.com/150x50/f7931a/ffffff?text=Aqui+aceita+Bitcoin?'">
+        <div class="container">
+            <div class="header-container">
+                <div class="logo">
+                    <img src="img/logo.png" alt="Logo Aqui aceita Bitcoin?">
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="sobre.html">Sobre nós</a></li>
+                        <li><a href="carteiras.html">Carteiras Bitcoin</a></li>
+                        <li><a href="cadastro.html">Cadastre seu estabelecimento</a></li>
+                        <li><a href="materiais.html" class="active">Materiais</a></li>
+                        <li><a href="admin.html">Administração</a></li>
+                    </ul>
+                </nav>
             </div>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Início</a></li>
-                    <li><a href="sobre.html">Sobre nós</a></li>
-                    <li><a href="carteiras.html">Carteiras Bitcoin</a></li>
-                    <li><a href="cadastro.html">Cadastre seu estabelecimento</a></li>
-                    <li><a href="materiais.html">Materiais</a></li>
-                </ul>
-            </nav>
         </div>
     </header>
     
-    <main class="container">
-        <section class="hero" style="padding: 30px 20px;">
-            <h1>Aqui aceita Bitcoin?</h1>
-            <p>Encontre estabelecimentos que aceitam Bitcoin em Carambeí e região</p>
+    <main>
+        <section class="container">
+            <h1 class="section-title">Materiais de Divulgação</h1>
+            <p class="section-subtitle">Recursos para ajudar a expandir o projeto "Aqui aceita Bitcoin?" em sua região</p>
+            
+            <div class="intro-section">
+                <div class="intro-content">
+                    <h2 class="intro-title">Nossa Missão</h2>
+                    <p class="intro-text">
+                        Disponibilizamos uma série de materiais para ajudar na divulgação e implementação do Bitcoin como meio de pagamento em estabelecimentos comerciais. Estes recursos foram desenvolvidos com base na experiência bem-sucedida de Rolante-RS, onde mais de 30 estabelecimentos já aceitam Bitcoin.
+                    </p>
+                    <p class="intro-text">
+                        Nosso objetivo é facilitar a adoção do Bitcoin, fornecendo materiais informativos, modelos de mensagens, adesivos e cartazes que podem ser utilizados por qualquer pessoa interessada em expandir a rede Bitcoin em sua região.
+                    </p>
+                </div>
+                <div class="intro-image">
+                    <img src="img/materiais/fredericas-btc.jpg" alt="Exemplo de uso do adesivo Bitcoin na Frederica's" style="width: 50%; height: auto; align-self: center; object-fit: contain;">
+                </div>
+            </div>
         </section>
         
-        <!-- Seção de passos simplificados -->
-        <section class="steps-container">
-            <div class="steps-title">
-                <h2>Comece em 3 passos simples</h2>
-                <p>Faça parte da revolução Bitcoin e aumente a visibilidade do seu negócio</p>
+        <section class="materials-container">
+            <div class="materials-tabs">
+                <button class="tab-button active" onclick="openTab(event, 'whatsapp')">Mensagens WhatsApp</button>
+                <button class="tab-button" onclick="openTab(event, 'print')">Materiais para Impressão</button>
+                <button class="tab-button" onclick="openTab(event, 'case-studies')">Casos de Sucesso</button>
+                <button class="tab-button" onclick="openTab(event, 'resources')">Apostilas e Recursos</button>
             </div>
             
-            <div class="steps-flow">
-                <div class="step-item">
-                    <div class="step-number">1</div>
-                    <div class="step-icon">
-                        <i class="fas fa-store-alt"></i>
-                    </div>
-                    <div class="step-title">Cadastre seu estabelecimento</div>
-                    <div class="step-description">
-                        Adicione seu negócio ao mapa global do Bitcoin em menos de 2 minutos.
-                    </div>
-                    <div class="d-flex justify-content-center mt-3">
-                        <a href="cadastro.html" class="cta-button">
-                            <i class="fas fa-arrow-right"></i> Cadastrar agora
-                        </a>
-                    </div>
-                </div>
+            <!-- Aba de Mensagens WhatsApp -->
+            <div id="whatsapp" class="tab-content active">
+                <h3>Mensagens Prontas para WhatsApp</h3>
+                <p>Utilize estas mensagens para abordar estabelecimentos e convidá-los a participar do projeto "Aqui aceita Bitcoin?".</p>
                 
-                <div class="step-item">
-                    <div class="step-number">2</div>
-                    <div class="step-icon">
-                        <i class="fas fa-wallet"></i>
-                    </div>
-                    <div class="step-title">Crie sua carteira Bitcoin</div>
-                    <div class="step-description">
-                        Configure uma carteira Bitcoin segura para receber pagamentos instantaneamente.
-                    </div>
-                    <div class="d-flex justify-content-center mt-3">
-                        <a href="carteiras.html" class="cta-button">
-                            <i class="fas fa-arrow-right"></i> Criar carteira
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="step-item">
-                    <div class="step-number">3</div>
-                    <div class="step-icon">
-                        <i class="fas fa-qrcode"></i>
-                    </div>
-                    <div class="step-title">Comece a aceitar Bitcoin<br></div>
-                    <div class="step-description">
-                        Exiba o adesivo "Aqui aceita Bitcoin" e comece a receber pagamentos.
-                    </div>
-                    <div class="d-flex justify-content-center mt-3">
-                        <a href="materiais.html" class="cta-button">
-                            <i class="fas fa-arrow-right"></i> Obter materiais
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section>
-            <h2 class="section-title">Bitcoin Maps</h2>
-            <p class="section-subtitle">Encontre estabelecimentos que aceitam Bitcoin em Carambeí e região</p>
-            
-            <!-- BTC Map oficial via iframe com zoom inicial para Carambeí, Telêmaco Borba e Ponta Grossa -->
-            <div class="btcmap-container">
-                <iframe class="btcmap-iframe" src="https://btcmap.org/map#10/-24.9/-50.1" allowfullscreen></iframe>
-            </div>
-        </section>
-        
-        <!-- Estabelecimentos em destaque -->
-        <section class="featured-establishments">
-            <h3>Estabelecimentos em Destaque</h3>
-            <div class="establishment-cards">
-                <div class="establishment-card">
-                    <div class="establishment-image" style="background-image: url('img/logos/fredericas.jpg')"></div>
-                    <div class="establishment-details">
-                        <h4 class="establishment-name">Frederica's Koffiehuis</h4>
-                        <span class="establishment-category">Café</span>
-                        <div class="establishment-address">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Avenida dos Pioneiros, 1010, Carambeí, PR</span>
-                        </div>
-                        <div class="establishment-payment">
-                            <span class="payment-method lightning">
-                                <i class="fas fa-bolt"></i> Lightning
-                            </span>
-                            <span class="payment-method onchain">
-                                <i class="fab fa-bitcoin"></i> On-chain
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="establishment-card">
-                    <div class="establishment-image" style="background-image: url('img/logos/dr-adrian-gomez.jpg')"></div>
-                    <div class="establishment-details">
-                        <h4 class="establishment-name">Dr. Adrian Gómez Collantes</h4>
-                        <span class="establishment-category">Serviços de Saúde</span>
-                        <div class="establishment-address">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Rua Ouro Branco, 426, Carambeí, PR</span>
-                        </div>
-                        <div class="establishment-payment">
-                            <span class="payment-method lightning">
-                                <i class="fas fa-bolt"></i> Lightning
-                            </span>
-                            <span class="payment-method onchain">
-                                <i class="fab fa-bitcoin"></i> On-chain
-                            </span>
-                            <span class="payment-method contactless">
-                                <i class="fas fa-wifi"></i> Contactless
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="establishment-card">
-                    <div class="establishment-image" style="background-image: url('img/logos/deltad.jpg')"></div>
-                    <div class="establishment-details">
-                        <h4 class="establishment-name">DeltaD Engenharia e Locações</h4>
-                        <span class="establishment-category">Aluguel</span>
-                        <div class="establishment-address">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Avenida dos Pioneiros, 00, Carambeí, PR</span>
-                        </div>
-                        <div class="establishment-payment">
-                            <span class="payment-method lightning">
-                                <i class="fas fa-bolt"></i> Lightning
-                            </span>
-                            <span class="payment-method onchain">
-                                <i class="fab fa-bitcoin"></i> On-chain
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Formulário de cadastro rápido -->
-        <section id="cadastro-rapido" class="quick-form">
-            <h3>Cadastro Rápido</h3>
-            <form id="quickForm" action="cadastro.html" method="get">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="nomeEstabelecimento">Nome do Estabelecimento</label>
-                        <input type="text" id="nomeEstabelecimento" name="nome" placeholder="Ex: Café Colonial Frederica's" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="tipoEstabelecimento">Tipo de Estabelecimento</label>
-                        <select id="tipoEstabelecimento" name="tipo" required>
-                            <option value="" selected disabled>Selecione...</option>
-                            <option value="restaurant">Restaurante</option>
-                            <option value="cafe">Café</option>
-                            <option value="bar">Bar</option>
-                            <option value="hotel">Hotel</option>
-                            <option value="shop">Loja</option>
-                            <option value="supermarket">Supermercado</option>
-                            <option value="bakery">Padaria</option>
-                            <option value="pharmacy">Farmácia</option>
-                            <option value="healthcare">Serviços de Saúde</option>
-                            <option value="rental">Aluguel</option>
-                            <option value="other">Outro</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="endereco">Endereço</label>
-                        <input type="text" id="endereco" name="endereco" placeholder="Ex: Avenida dos Pioneiros, 1010, Carambeí, PR" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email de Contato</label>
-                        <input type="email" id="email" name="email" placeholder="Ex: contato@seuestablecimento.com.br">
-                    </div>
-                </div>
-                <div class="row mt-4">
-                    <div class="col-12 d-flex justify-content-end">
-                        <button type="submit" class="btn btn-primary" style="width: auto; max-width: 300px;">
-                            <i class="fas fa-paper-plane me-2"></i> Continuar Cadastro
+                <div class="whatsapp-message">
+                    <div class="whatsapp-message-header">
+                        <div class="whatsapp-message-title">Primeira Abordagem - Caso Rolante-RS</div>
+                        <button class="copy-button" onclick="copyToClipboard('message1')">
+                            <i class="fas fa-copy"></i> Copiar
                         </button>
                     </div>
+                    <div id="message1" class="whatsapp-message-content">Olá! Tudo bem?
+
+Gostaria de compartilhar uma iniciativa que está transformando o comércio local em Rolante-RS. Lá, mais de 30 estabelecimentos já aceitam Bitcoin como forma de pagamento, o que tem atraído turistas e novos clientes para a região.
+
+O projeto "Aqui aceita Bitcoin?" tem impactado positivamente a economia local, com aumento médio de 15% no faturamento dos estabelecimentos participantes.
+
+Estamos trazendo essa iniciativa para Carambeí e gostaria de convidar seu estabelecimento a fazer parte desse movimento inovador.
+
+Você pode conhecer mais sobre o projeto em nosso site: www.aquiaceitabitcoin.com.br
+
+Podemos conversar mais sobre isso? Estou à disposição para tirar dúvidas ou até mesmo agendar uma visita ao seu estabelecimento para ajudar no cadastro e realizar a primeira compra em Bitcoin.
+
+Aguardo seu retorno!
+</div>
                 </div>
-            </form>
+                
+                <div class="whatsapp-message">
+                    <div class="whatsapp-message-header">
+                        <div class="whatsapp-message-title">Segundo Dia - Benefícios para o Estabelecimento</div>
+                        <button class="copy-button" onclick="copyToClipboard('message2')">
+                            <i class="fas fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                    <div id="message2" class="whatsapp-message-content">Olá novamente!
+
+Gostaria de compartilhar alguns benefícios que os estabelecimentos em Rolante-RS estão tendo ao aceitar Bitcoin:
+
+✅ Redução de taxas: pagamentos em Bitcoin têm taxas muito menores que cartões de crédito
+✅ Sem chargebacks: transações são irreversíveis, eliminando fraudes
+✅ Visibilidade global: seu estabelecimento aparece no mapa mundial do Bitcoin
+✅ Diferencial competitivo: atrai clientes interessados em tecnologia e inovação
+✅ Pagamentos instantâneos: receba o valor na hora com a Lightning Network
+
+O processo de cadastro é simples e gratuito, e nossa equipe oferece todo o suporte necessário.
+
+Você gostaria de saber mais sobre como implementar essa solução no seu estabelecimento?
+
+Estou à disposição para ajudar!
+</div>
+                </div>
+                
+                <div class="whatsapp-message">
+                    <div class="whatsapp-message-header">
+                        <div class="whatsapp-message-title">Terceiro Dia - Proposta de Visita</div>
+                        <button class="copy-button" onclick="copyToClipboard('message3')">
+                            <i class="fas fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                    <div id="message3" class="whatsapp-message-content">Olá! Como vai?
+
+Estou acompanhando alguns estabelecimentos em Carambeí que já começaram a aceitar Bitcoin, e os resultados têm sido muito positivos!
+
+Gostaria de propor uma visita ao seu estabelecimento para:
+
+1. Demonstrar como funciona o pagamento em Bitcoin na prática
+2. Ajudar no cadastro do seu negócio no mapa Bitcoin
+3. Configurar uma carteira digital segura para receber pagamentos
+4. Realizar a primeira compra em Bitcoin como demonstração
+5. Entregar o adesivo "Aqui aceita Bitcoin" para seu estabelecimento
+
+Tudo isso sem nenhum custo e com suporte contínuo da nossa equipe.
+
+Qual seria o melhor dia e horário para essa visita?
+
+Aguardo seu retorno e estou à disposição para qualquer dúvida!
+</div>
+                </div>
+            </div>
+            
+            <!-- Aba de Materiais para Impressão -->
+            <div id="print" class="tab-content">
+                <h3>Materiais para Impressão</h3>
+                <p>Baixe e imprima estes materiais para ajudar na divulgação do projeto "Aqui aceita Bitcoin?".</p>
+                
+                <div class="material-card">
+                    <div class="material-card-header">
+                        <h4 class="material-card-title">Adesivo "Aqui aceita Bitcoin"</h4>
+                    </div>
+                    <div class="material-card-content">
+                        <img src="img/materiais/adesivo-novo.jpeg" alt="Adesivo Aqui aceita Bitcoin" class="material-preview">
+                        <div class="material-card-description">
+                            Adesivo para ser colocado na entrada do estabelecimento, indicando que o local aceita pagamentos em Bitcoin. Formato 30cm x 7,5cm.
+                        </div>
+                    </div>
+                    <div class="material-card-footer">
+                        <span>Formato: JPG | Tamanho: 30cm x 7,5cm</span>
+                        <a href="downloads/adesivo-bitcoin.jpg" class="download-button" download>
+                            <i class="fas fa-download"></i> Baixar
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="material-card">
+                    <div class="material-card-header">
+                        <h4 class="material-card-title">Folder Informativo</h4>
+                    </div>
+                    <div class="material-card-content">
+                        <img src="img/materiais/adesivo-novo.jpeg" alt="Folder Informativo" class="material-preview">
+                        <div class="material-card-description">
+                            Folder com informações sobre o projeto "Aqui aceita Bitcoin?" e os benefícios de aceitar pagamentos em Bitcoin. Inclui instruções para começar e carteiras recomendadas.
+                        </div>
+                    </div>
+                    <div class="material-card-footer">
+                        <span>Formato: HTML | Tamanho: A4</span>
+                        <a href="downloads/folder-bitcoin.html" class="download-button" download>
+                            <i class="fas fa-download"></i> Baixar
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="material-card">
+                    <div class="material-card-header">
+                        <h4 class="material-card-title">Cartaz para Estabelecimento</h4>
+                    </div>
+                    <div class="material-card-content">
+                        <img src="img/materiais/adesivo-novo.jpeg" alt="Cartaz para Estabelecimento" class="material-preview">
+                        <div class="material-card-description">
+                            Cartaz para ser colocado no estabelecimento, destacando os benefícios do pagamento em Bitcoin e com espaço para QR code personalizado.
+                        </div>
+                    </div>
+                    <div class="material-card-footer">
+                        <span>Formato: HTML | Tamanho: A3</span>
+                        <a href="downloads/cartaz-bitcoin.html" class="download-button" download>
+                            <i class="fas fa-download"></i> Baixar
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="material-card">
+                    <div class="material-card-header">
+                        <h4 class="material-card-title">Guia Rápido para Comerciantes</h4>
+                    </div>
+                    <div class="material-card-content">
+                        <img src="img/materiais/fredericas-btc.jpg" alt="Guia Rápido para Comerciantes" class="material-preview">
+                        <div class="material-card-description">
+                            Guia passo a passo para comerciantes que desejam aceitar Bitcoin em seus estabelecimentos, com exemplo real da Frederica's.
+                        </div>
+                    </div>
+                    <div class="material-card-footer">
+                        <span>Formato: HTML | Tamanho: A4</span>
+                        <a href="downloads/guia-rapido.html" class="download-button" download>
+                            <i class="fas fa-download"></i> Baixar
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Aba de Casos de Sucesso -->
+            <div id="case-studies" class="tab-content">
+                <h3>Casos de Sucesso</h3>
+                <p>Conheça histórias reais de cidades e estabelecimentos que adotaram o Bitcoin como forma de pagamento.</p>
+                
+                <div class="case-study">
+                    <div class="case-study-header">
+                        <div class="case-study-icon">
+                            <i class="fas fa-city"></i>
+                        </div>
+                        <h4 class="case-study-title">Rolante-RS: A Cidade do Bitcoin</h4>
+                    </div>
+                    <div class="case-study-content">
+                        <p>Rolante, uma pequena cidade no Rio Grande do Sul, tornou-se um exemplo nacional de adoção de Bitcoin. O projeto começou em 2022 com apenas 5 estabelecimentos e hoje conta com mais de 30 locais que aceitam a criptomoeda.</p>
+                        
+                        <p>O impacto na economia local foi significativo. Comerciantes relatam um aumento médio de 15% no faturamento, e a cidade passou a receber turistas interessados em conhecer e utilizar Bitcoin em suas compras.</p>
+                        
+                        <p>O sucesso de Rolante se deve principalmente ao trabalho de educação e suporte contínuo oferecido aos comerciantes. Workshops regulares, material informativo e um grupo de suporte no WhatsApp garantem que todos os participantes se sintam confiantes em utilizar a tecnologia.</p>
+                        
+                        <p>A cidade também realiza eventos mensais para promover o uso de Bitcoin, como o "Dia do Bitcoin", onde os estabelecimentos participantes oferecem descontos especiais para pagamentos em criptomoeda.</p>
+                        
+                        <div class="case-study-stats">
+                            <div class="case-study-stat">
+                                <div class="case-study-stat-value">30+</div>
+                                <div class="case-study-stat-label">Estabelecimentos</div>
+                            </div>
+                            <div class="case-study-stat">
+                                <div class="case-study-stat-value">15%</div>
+                                <div class="case-study-stat-label">Aumento no faturamento</div>
+                            </div>
+                            <div class="case-study-stat">
+                                <div class="case-study-stat-value">200+</div>
+                                <div class="case-study-stat-label">Transações mensais</div>
+                            </div>
+                            <div class="case-study-stat">
+                                <div class="case-study-stat-value">20%</div>
+                                <div class="case-study-stat-label">Aumento no turismo</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="case-study">
+                    <div class="case-study-header">
+                        <div class="case-study-icon">
+                            <i class="fas fa-store"></i>
+                        </div>
+                        <h4 class="case-study-title">Café Bitcoin: Pioneiro em Rolante</h4>
+                    </div>
+                    <div class="case-study-content">
+                        <p>O Café Bitcoin foi um dos primeiros estabelecimentos a adotar a criptomoeda em Rolante. O proprietário, João Silva, decidiu aceitar Bitcoin após participar de um workshop sobre criptomoedas.</p>
+                        
+                        <p>"No início, eu estava receoso. Não entendia muito bem como funcionava e tinha medo de ser complicado. Mas com o suporte da equipe do projeto, percebi que era mais simples do que eu imaginava", conta João.</p>
+                        
+                        <p>Após três meses aceitando Bitcoin, o Café Bitcoin viu um aumento de 25% em seu faturamento. "Muitas pessoas vêm de outras cidades só para tomar um café e pagar com Bitcoin. Virou uma atração turística", explica o proprietário.</p>
+                        
+                        <p>Além do aumento nas vendas, João destaca a redução nos custos com taxas de cartão de crédito. "Com o Bitcoin, as taxas são muito menores. Isso faz uma grande diferença no final do mês", afirma.</p>
+                        
+                        <div class="case-study-stats">
+                            <div class="case-study-stat">
+                                <div class="case-study-stat-value">25%</div>
+                                <div class="case-study-stat-label">Aumento nas vendas</div>
+                            </div>
+                            <div class="case-study-stat">
+                                <div class="case-study-stat-value">3%</div>
+                                <div class="case-study-stat-label">Redução em taxas</div>
+                            </div>
+                            <div class="case-study-stat">
+                                <div class="case-study-stat-value">30%</div>
+                                <div class="case-study-stat-label">Novos clientes</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Aba de Apostilas e Recursos -->
+            <div id="resources" class="tab-content">
+                <h3>Apostilas e Recursos Educativos</h3>
+                <p>Materiais educativos para aprender mais sobre Bitcoin e como implementá-lo em estabelecimentos comerciais.</p>
+                
+                <div class="resources-grid">
+                    <div class="resource-card">
+                        <div class="resource-card-header">
+                            <h4 class="resource-card-title">Apostila: Bitcoin para Comerciantes</h4>
+                        </div>
+                        <div class="resource-card-content">
+                            <div class="resource-card-description">
+                                Guia completo sobre como implementar pagamentos em Bitcoin em estabelecimentos comerciais, com explicações detalhadas e exemplos práticos.
+                            </div>
+                        </div>
+                        <div class="resource-card-footer">
+                            <span>PDF | 25 páginas</span>
+                            <a href="downloads/apostila-bitcoin-comerciantes.pdf" class="download-button" download>
+                                <i class="fas fa-download"></i> Baixar
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <div class="resource-card-header">
+                            <h4 class="resource-card-title">Manual: Lightning Network</h4>
+                        </div>
+                        <div class="resource-card-content">
+                            <div class="resource-card-description">
+                                Tudo sobre a Lightning Network, a tecnologia que permite pagamentos instantâneos e com taxas mínimas em Bitcoin.
+                            </div>
+                        </div>
+                        <div class="resource-card-footer">
+                            <span>PDF | 18 páginas</span>
+                            <a href="downloads/manual-lightning.pdf" class="download-button" download>
+                                <i class="fas fa-download"></i> Baixar
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <div class="resource-card-header">
+                            <h4 class="resource-card-title">Guia: Carteiras Bitcoin</h4>
+                        </div>
+                        <div class="resource-card-content">
+                            <div class="resource-card-description">
+                                Comparativo detalhado das principais carteiras Bitcoin, com instruções passo a passo para configuração e uso.
+                            </div>
+                        </div>
+                        <div class="resource-card-footer">
+                            <span>PDF | 15 páginas</span>
+                            <a href="downloads/guia-carteiras.pdf" class="download-button" download>
+                                <i class="fas fa-download"></i> Baixar
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <div class="resource-card-header">
+                            <h4 class="resource-card-title">Apresentação: Bitcoin para Iniciantes</h4>
+                        </div>
+                        <div class="resource-card-content">
+                            <div class="resource-card-description">
+                                Apresentação em slides para explicar os conceitos básicos de Bitcoin para pessoas sem conhecimento prévio.
+                            </div>
+                        </div>
+                        <div class="resource-card-footer">
+                            <span>PowerPoint | 30 slides</span>
+                            <a href="downloads/apresentacao-bitcoin.pptx" class="download-button" download>
+                                <i class="fas fa-download"></i> Baixar
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <div class="resource-card-header">
+                            <h4 class="resource-card-title">Vídeo: Como Receber Pagamentos em Bitcoin</h4>
+                        </div>
+                        <div class="resource-card-content">
+                            <div class="resource-card-description">
+                                Tutorial em vídeo mostrando na prática como receber pagamentos em Bitcoin em um estabelecimento comercial.
+                            </div>
+                        </div>
+                        <div class="resource-card-footer">
+                            <span>MP4 | 10 minutos</span>
+                            <a href="downloads/tutorial-pagamentos.mp4" class="download-button" download>
+                                <i class="fas fa-download"></i> Baixar
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <div class="resource-card-header">
+                            <h4 class="resource-card-title">Planilha: Controle de Pagamentos</h4>
+                        </div>
+                        <div class="resource-card-content">
+                            <div class="resource-card-description">
+                                Planilha para controle de pagamentos recebidos em Bitcoin, com cálculo automático de valores em reais.
+                            </div>
+                        </div>
+                        <div class="resource-card-footer">
+                            <span>Excel | Planilha interativa</span>
+                            <a href="downloads/planilha-controle.xlsx" class="download-button" download>
+                                <i class="fas fa-download"></i> Baixar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
     
     <footer>
-        <div class="footer-container">
-            <div class="footer-section">
-                <h4>Aqui aceita Bitcoin?</h4>
-                <p>Iniciativa do Clube BR⚡LN para promover a adoção de Bitcoin em estabelecimentos comerciais.</p>
-                <div class="social-links">
-                    <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
-                    <a href="#" target="_blank"><i class="fab fa-telegram"></i></a>
-                    <a href="#" target="_blank"><i class="fab fa-github"></i></a>
-                    <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-                </div>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="img/logo.png" alt="Logo Aqui aceita Bitcoin?">
             </div>
-            <div class="footer-section">
-                <h4>Links Úteis</h4>
+            <div class="footer-links">
+                <h3>Links Úteis</h3>
                 <ul>
                     <li><a href="index.html">Início</a></li>
                     <li><a href="sobre.html">Sobre nós</a></li>
                     <li><a href="carteiras.html">Carteiras Bitcoin</a></li>
                     <li><a href="cadastro.html">Cadastre seu estabelecimento</a></li>
-                    <li><a href="materiais.html">Materiais</a></li>
                 </ul>
             </div>
-            <div class="footer-section">
-                <h4>Recursos</h4>
-                <ul>
-                    <li><a href="https://btcmap.org" target="_blank">BTC Map</a></li>
-                    <li><a href="https://bitcoin.org" target="_blank">Bitcoin.org</a></li>
-                    <li><a href="https://lightning.network" target="_blank">Lightning Network</a></li>
-                    <li><a href="https://www.openstreetmap.org" target="_blank">OpenStreetMap</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Contato</h4>
-                <ul>
-                    <li><i class="fas fa-envelope me-2"></i> contato@aquiaceitabitcoin.com.br</li>
-                    <li><i class="fas fa-map-marker-alt me-2"></i> Carambeí, Paraná, Brasil</li>
-                </ul>
+            <div class="footer-social">
+                <h3>Redes Sociais</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                </div>
             </div>
         </div>
-        <div class="copyright">
-            <p>&copy; 2025 Aqui aceita Bitcoin? - Clube BR⚡LN. Todos os direitos reservados.</p>
-            <p>Powered by <img src="https://bitcoin.org/img/icons/logotop.svg" alt="Bitcoin Logo" class="bitcoin-logo"> Bitcoin</p>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Clube BR⚡LN - Todos os direitos reservados</p>
         </div>
     </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Formulário de cadastro rápido
-            const quickForm = document.getElementById('quickForm');
+        function openTab(evt, tabName) {
+            var i, tabcontent, tabbuttons;
             
-            quickForm.addEventListener('submit', function(e) {
-                // Não é necessário prevenir o comportamento padrão,
-                // pois queremos que o formulário redirecione para cadastro.html
-                
-                // Podemos adicionar validação adicional aqui se necessário
-                console.log('Formulário enviado com sucesso!');
+            // Esconde todos os conteúdos de abas
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            
+            // Remove a classe "active" de todos os botões
+            tabbuttons = document.getElementsByClassName("tab-button");
+            for (i = 0; i < tabbuttons.length; i++) {
+                tabbuttons[i].className = tabbuttons[i].className.replace(" active", "");
+            }
+            
+            // Mostra o conteúdo da aba atual e adiciona a classe "active" ao botão
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+        
+        function copyToClipboard(elementId) {
+            const text = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(text).then(function() {
+                alert("Mensagem copiada para a área de transferência!");
+            }, function() {
+                alert("Não foi possível copiar a mensagem. Por favor, tente novamente.");
             });
-            
-            // Esconder o contador de estabelecimentos do BTC Map
-            // Isso é feito via CSS com display: none !important
-        });
+        }
     </script>
-    <script src="js/btcmap-flag-manager.js"></script>
 </body>
 </html>
