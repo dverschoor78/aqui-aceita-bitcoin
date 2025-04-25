@@ -48,3 +48,5 @@ out/
 # Outros
 .vercel
 .netlify
+
+.gitignore
