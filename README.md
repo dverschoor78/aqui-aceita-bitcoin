@@ -123,4 +123,4 @@ Clube BR⚡LN - contato@clubebrln.org
 
 ---
 
-Desenvolvido com ❤️ pelo Clube BR⚡LN
+⚡ Desenvolvido pelo     Clube BR⚡LN
