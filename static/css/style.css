@@ -1,0 +1,153 @@
+/* Variables */
+:root {
+  --bitcoin-orange: #f7931a;
+  --bitcoin-orange-light: #ffa94d;
+  --bitcoin-orange-dark: #e67e00;
+  --lightning-blue: #3d9ae8;
+  --onchain-green: #28a745;
+  --contactless-purple: #6f42c1;
+  --info-yellow: #fff9e6;
+  --light-gray: #f8f9fa;
+  --dark-gray: #343a40;
+  --medium-gray: #6c757d;
+  --border-radius: 8px;
+}
+
+/* Body */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--light-gray);
+  color: var(--dark-gray);
+  line-height: 1.6;
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Header */
+header {
+  background-color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 15px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Section Titles */
+.section-title {
+  text-align: center;
+  color: var(--bitcoin-orange);
+  margin-bottom: 10px;
+  font-size: 2em;
+}
+
+.section-subtitle {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.2em;
+  color: #555;
+}
+
+/* Buttons */
+.copy-button,
+.download-button,
+.cta-button,
+.wallet-button {
+  background-color: var(--bitcoin-orange);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  padding: 8px 15px;
+  cursor: pointer;
+  font-size: 0.9em;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.copy-button:hover,
+.download-button:hover,
+.cta-button:hover,
+.wallet-button:hover {
+  background-color: var(--bitcoin-orange-dark);
+}
+
+/* Cards */
+.material-card,
+.wallet-card,
+.resource-card,
+.establishment-card,
+.stat-card {
+  border: 1px solid #ddd;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  margin-bottom: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.material-card:hover,
+.wallet-card:hover,
+.resource-card:hover,
+.establishment-card:hover,
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Forms */
+.form-control,
+.form-select {
+  border-radius: var(--border-radius);
+  padding: 10px 15px;
+  border: 1px solid #ced4da;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--bitcoin-orange);
+  box-shadow: 0 0 0 0.25rem rgba(247, 147, 26, 0.25);
+}
+
+/* Timeline */
+.timeline-container {
+  position: relative;
+  max-width: 800px;
+  margin: 60px auto;
+}
+
+.timeline-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 4px;
+  background-color: var(--bitcoin-orange);
+  transform: translateX(-50%);
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  .wallet-card {
+    width: 100%;
+  }
+
+  .timeline-line {
+    left: 20px;
+  }
+}

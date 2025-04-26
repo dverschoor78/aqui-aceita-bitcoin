@@ -1,0 +1,183 @@
+:root {
+  --bitcoin-orange: #f7931a;
+  --bitcoin-orange-light: #ffa94d;
+  --bitcoin-orange-dark: #e67e00;
+  --lightning-blue: #3d9ae8;
+  --onchain-green: #28a745;
+  --contactless-purple: #6f42c1;
+  --info-yellow: #fff9e6;
+  --light-gray: #f8f9fa;
+  --dark-gray: #343a40;
+  --medium-gray: #6c757d;
+  --border-radius: 8px;
+}
+
+.admin-header {
+  background-color: var(--dark-gray);
+  color: white;
+  padding: 20px 0;
+  margin-bottom: 30px;
+}
+
+.admin-card {
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.admin-card .card-header {
+  background-color: var(--bitcoin-orange);
+  color: white;
+  font-weight: 600;
+}
+
+.admin-table th {
+  background-color: var(--light-gray);
+}
+
+.status-pending {
+  background-color: #fff3cd;
+  color: #856404;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.status-confirmed {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.action-btn {
+  margin-right: 5px;
+}
+
+.stats-card {
+  border-left: 4px solid var(--bitcoin-orange);
+  margin-bottom: 15px;
+  transition: transform 0.3s ease;
+}
+
+.stats-card:hover {
+  transform: translateY(-5px);
+}
+
+.stats-card .card-body {
+  padding: 15px;
+}
+
+.stats-card .stats-icon {
+  font-size: 2rem;
+  color: var(--bitcoin-orange);
+}
+
+.stats-card .stats-value {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--dark-gray);
+}
+
+.stats-card .stats-label {
+  color: var(--medium-gray);
+  font-size: 0.9rem;
+}
+
+.btc-tag {
+  display: inline-block;
+  background-color: var(--info-yellow);
+  color: var(--dark-gray);
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+.location-badge {
+  display: inline-block;
+  background-color: var(--lightning-blue);
+  color: white;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  margin-right: 5px;
+}
+
+.location-selector {
+  margin-bottom: 20px;
+}
+
+.location-card {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 10px;
+}
+
+.location-card:hover {
+  background-color: var(--light-gray);
+}
+
+.location-card.active {
+  border-color: var(--bitcoin-orange);
+  background-color: rgba(247, 147, 26, 0.1);
+}
+
+.location-card h5 {
+  margin-bottom: 5px;
+  color: var(--dark-gray);
+}
+
+.location-card p {
+  margin-bottom: 5px;
+  color: var(--medium-gray);
+  font-size: 0.9rem;
+}
+
+.location-card .location-stats {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.location-card .location-stat {
+  text-align: center;
+}
+
+.location-card .location-stat-value {
+  font-weight: bold;
+  color: var(--bitcoin-orange);
+  font-size: 1.2rem;
+}
+
+.location-card .location-stat-label {
+  font-size: 0.8rem;
+  color: var(--medium-gray);
+}
+
+.nav-tabs .nav-link {
+  color: var(--medium-gray);
+}
+
+.nav-tabs .nav-link.active {
+  color: var(--bitcoin-orange);
+  font-weight: 600;
+}
+
+.tab-pane {
+  padding: 20px 0;
+}
+
+#map-container {
+  height: 400px;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}

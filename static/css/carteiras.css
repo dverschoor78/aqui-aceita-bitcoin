@@ -1,0 +1,286 @@
+.wallet-container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.section-title {
+  text-align: center;
+  color: #f7931a;
+  margin-bottom: 10px;
+  font-size: 2em;
+}
+
+.section-subtitle {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 1.2em;
+  color: #555;
+}
+
+.wallet-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+.wallet-card {
+  flex: 1;
+  min-width: 280px;
+  max-width: 350px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.wallet-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.wallet-header {
+  padding: 20px;
+  background-color: #f8f9fa;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+.wallet-logo {
+  height: 80px;
+  margin-bottom: 15px;
+  object-fit: contain;
+}
+
+.wallet-name {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.wallet-type {
+  color: #666;
+  font-size: 0.9em;
+}
+
+.wallet-body {
+  padding: 20px;
+}
+
+.wallet-description {
+  color: #555;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.wallet-features {
+  margin-bottom: 20px;
+}
+
+.wallet-feature {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.wallet-feature i {
+  color: #28a745;
+  margin-right: 10px;
+}
+
+.wallet-cta {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.wallet-button {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #f7931a;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.wallet-button:hover {
+  background-color: #e67e00;
+  transform: translateY(-3px);
+}
+
+.steps-container {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.steps-title {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.steps-title h2 {
+  color: #f7931a;
+  font-size: 1.8em;
+  margin-bottom: 10px;
+}
+
+.steps-title p {
+  color: #666;
+}
+
+.wallet-step {
+  display: flex;
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #eee;
+}
+
+.wallet-step:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.step-number {
+  flex: 0 0 50px;
+  width: 50px;
+  height: 50px;
+  background-color: #f7931a;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.5em;
+  margin-right: 20px;
+}
+
+.step-content {
+  flex: 1;
+}
+
+.step-title {
+  font-size: 1.3em;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.step-description {
+  color: #555;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+.step-image {
+  max-width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 15px;
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 40px 0;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.comparison-table th {
+  background-color: #f7931a;
+  color: white;
+  padding: 15px;
+  text-align: left;
+}
+
+.comparison-table td {
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.comparison-table tr:last-child td {
+  border-bottom: none;
+}
+
+.comparison-table tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.comparison-table i.fa-check {
+  color: #28a745;
+}
+
+.comparison-table i.fa-times {
+  color: #dc3545;
+}
+
+.faq-container {
+  max-width: 800px;
+  margin: 50px auto;
+}
+
+.faq-item {
+  margin-bottom: 20px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.faq-question {
+  padding: 15px 20px;
+  background-color: #f8f9fa;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faq-question:hover {
+  background-color: #f1f1f1;
+}
+
+.faq-answer {
+  padding: 0 20px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.faq-answer.active {
+  padding: 20px;
+  max-height: 500px;
+}
+
+@media (max-width: 768px) {
+  .wallet-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .wallet-card {
+    width: 100%;
+  }
+
+  .wallet-step {
+    flex-direction: column;
+  }
+
+  .step-number {
+    margin-bottom: 15px;
+  }
+}
