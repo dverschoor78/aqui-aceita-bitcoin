@@ -5,9 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sobre o Projeto - Aceita Bitcoin?</title>
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link rel="stylesheet" href="static/css/sobre.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/sobre.css') }}">
 </head>
 
 <body>
@@ -37,7 +37,7 @@
           </p>
         </div>
         <div class="intro-image">
-          <img src="img/bitcoin-adoption.jpg" alt="Adoção de Bitcoin">
+          <img src="{{ url_for('static', filename='img/bitcoin-adoption.jpg') }}" alt="Adoção de Bitcoin">
         </div>
       </div>
 
@@ -207,7 +207,7 @@
       <div class="team-container">
         <div class="team-members">
           <div class="team-member">
-            <img src="img/team-member1.jpg" alt="Membro da Equipe" class="team-member-image">
+            <img src="{{ url_for('static', filename='img/team-member1.jpg') }}" alt="Membro da Equipe" class="team-member-image">
             <div class="team-member-name">João Silva</div>
             <div class="team-member-role">Fundador e Coordenador</div>
             <div class="team-member-bio">
@@ -222,7 +222,7 @@
           </div>
 
           <div class="team-member">
-            <img src="img/team-member2.jpg" alt="Membro da Equipe" class="team-member-image">
+            <img src="{{ url_for('static', filename='img/team-member2.jpg') }}" alt="Membro da Equipe" class="team-member-image">
             <div class="team-member-name">Maria Oliveira</div>
             <div class="team-member-role">Relações com Estabelecimentos</div>
             <div class="team-member-bio">
@@ -237,7 +237,7 @@
           </div>
 
           <div class="team-member">
-            <img src="img/team-member3.jpg" alt="Membro da Equipe" class="team-member-image">
+            <img src="{{ url_for('static', filename='img/team-member3.jpg') }}" alt="Membro da Equipe" class="team-member-image">
             <div class="team-member-name">Pedro Santos</div>
             <div class="team-member-role">Desenvolvedor</div>
             <div class="team-member-bio">
@@ -259,10 +259,10 @@
           crie sua carteira Bitcoin e comece a aceitar a moeda do futuro hoje mesmo.
         </p>
         <div class="cta-buttons">
-          <a href="index.html#cadastro-rapido" class="cta-button">
+          <a href="{{ url_for('serve_index') }}#cadastro-rapido" class="cta-button">
             <i class="fas fa-store"></i> Cadastrar Estabelecimento
           </a>
-          <a href="carteiras.html" class="cta-button">
+          <a href="{{ url_for('serve_carteiras') }}" class="cta-button">
             <i class="fas fa-wallet"></i> Criar Carteira Bitcoin
           </a>
           <a href="mailto:contato@clubebrln.org" class="cta-button secondary">
@@ -274,7 +274,7 @@
   </main>
 
   <div id="footer-placeholder"></div>
-  <script src="js/load-header-and-footer.js"></script>
+  <script src="{{ url_for('static', filename='js/load-header-and-footer.js') }}"></script>
 
 </body>
 

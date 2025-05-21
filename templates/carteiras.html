@@ -5,9 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Carteiras Bitcoin - Aceita Bitcoin?</title>
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link rel="stylesheet" href="static/css/carteiras.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/carteiras.css') }}">
 </head>
 
 <body>
@@ -21,7 +21,7 @@
       <div class="wallet-cards">
         <div class="wallet-card">
           <div class="wallet-header">
-            <img src="img/logos/coinos.png" alt="Coinos" class="wallet-logo">
+            <img src="{{ url_for('static', filename='img/coinos.png') }}" alt="Coinos" class="wallet-logo">
             <div class="wallet-name">Coinos</div>
             <div class="wallet-type">Web & Mobile</div>
           </div>
@@ -58,7 +58,7 @@
 
         <div class="wallet-card">
           <div class="wallet-header">
-            <img src="img/logos/wos.jpg" alt="Wallet of Satoshi" class="wallet-logo">
+            <img src="{{ url_for('static', filename='img/wos.jpg') }}" alt="Wallet of Satoshi" class="wallet-logo">
             <div class="wallet-name">Wallet of Satoshi</div>
             <div class="wallet-type">Mobile</div>
           </div>
@@ -95,7 +95,7 @@
 
         <div class="wallet-card">
           <div class="wallet-header">
-            <img src="img/logos/strike.png" alt="Strike" class="wallet-logo">
+            <img src="{{ url_for('static', filename='img/strike.png') }}" alt="Strike" class="wallet-logo">
             <div class="wallet-name">Strike</div>
             <div class="wallet-type">Mobile</div>
           </div>
@@ -357,7 +357,7 @@
       });
     });
   </script>
-  <script src="js/load-header-and-footer.js"></script>
+  <script src="{{ url_for('static', filename='js/load-header-and-footer.js') }}"></script>
   
 </body>
 
