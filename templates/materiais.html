@@ -6,10 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Materiais de Divulgação - Aceita Bitcoin?</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link rel="stylesheet" href="/css/btcmap-flags.css">
-  <link rel="stylesheet" href="/css/materiais.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/btcmap-flags.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/materiais.css') }}">
 </head>
 
 <body>
@@ -34,7 +34,7 @@
           </p>
         </div>
         <div class="intro-image">
-          <img src="img/materiais/fredericas-btc.jpg" alt="Exemplo de uso do adesivo Bitcoin na Frederica's"
+          <img src="{{ url_for('static', filename='img/materiais/fredericas-btc.jpg') }}" alt="Exemplo de uso do adesivo Bitcoin na Frederica's"
             style="width: 50%; height: auto; align-self: center; object-fit: contain;">
         </div>
       </div>
@@ -147,7 +147,7 @@
             <h4 class="material-card-title">Adesivo "Aceita Bitcoin?"</h4>
           </div>
           <div class="material-card-content">
-            <img src="img/materiais/adesivo-novo.jpeg" alt="Adesivo Aceita Bitcoin?" class="material-preview">
+            <img src="{{ url_for('static', filename='img/materiais/adesivo-novo.jpeg') }}" alt="Adesivo Aceita Bitcoin?" class="material-preview">
             <div class="material-card-description">
               Adesivo para ser colocado na entrada do estabelecimento, indicando que o local aceita pagamentos em
               Bitcoin. Formato 30cm x 7,5cm.
@@ -155,7 +155,7 @@
           </div>
           <div class="material-card-footer">
             <span>Formato: JPG | Tamanho: 30cm x 7,5cm</span>
-            <a href="downloads/adesivo-bitcoin.jpg" class="download-button" download>
+            <a href="{{ url_for('static', filename='downloads/adesivo-bitcoin.jpg') }}" class="download-button" download>
               <i class="fas fa-download"></i> Baixar
             </a>
           </div>
@@ -166,7 +166,7 @@
             <h4 class="material-card-title">Folder Informativo</h4>
           </div>
           <div class="material-card-content">
-            <img src="img/materiais/adesivo-novo.jpeg" alt="Folder Informativo" class="material-preview">
+            <img src="{{ url_for('static', filename='img/materiais/adesivo-novo.jpeg') }}" alt="Folder Informativo" class="material-preview">
             <div class="material-card-description">
               Folder com informações sobre o projeto "Aceita Bitcoin?" e os benefícios de aceitar pagamentos em Bitcoin.
               Inclui instruções para começar e carteiras recomendadas.
@@ -174,7 +174,7 @@
           </div>
           <div class="material-card-footer">
             <span>Formato: HTML | Tamanho: A4</span>
-            <a href="downloads/folder-bitcoin.html" class="download-button" download>
+            <a href="{{ url_for('static', filename='downloads/folder-bitcoin.html') }}" class="download-button" download>
               <i class="fas fa-download"></i> Baixar
             </a>
           </div>
@@ -185,7 +185,7 @@
             <h4 class="material-card-title">Cartaz para Estabelecimento</h4>
           </div>
           <div class="material-card-content">
-            <img src="img/materiais/adesivo-novo.jpeg" alt="Cartaz para Estabelecimento" class="material-preview">
+            <img src="{{ url_for('static', filename='img/materiais/adesivo-novo.jpeg') }}" alt="Cartaz para Estabelecimento" class="material-preview">
             <div class="material-card-description">
               Cartaz para ser colocado no estabelecimento, destacando os benefícios do pagamento em Bitcoin e com espaço
               para QR code personalizado.
@@ -193,7 +193,7 @@
           </div>
           <div class="material-card-footer">
             <span>Formato: HTML | Tamanho: A3</span>
-            <a href="downloads/cartaz-bitcoin.html" class="download-button" download>
+            <a href="{{ url_for('static', filename='downloads/cartaz-bitcoin.html') }}" class="download-button" download>
               <i class="fas fa-download"></i> Baixar
             </a>
           </div>
@@ -204,7 +204,7 @@
             <h4 class="material-card-title">Guia Rápido para Comerciantes</h4>
           </div>
           <div class="material-card-content">
-            <img src="img/materiais/fredericas-btc.jpg" alt="Guia Rápido para Comerciantes" class="material-preview">
+            <img src="{{ url_for('static', filename='img/fredericas-btc.jpg') }}" alt="Guia Rápido para Comerciantes" class="material-preview">
             <div class="material-card-description">
               Guia passo a passo para comerciantes que desejam aceitar Bitcoin em seus estabelecimentos, com exemplo
               real da Frederica's.
@@ -212,7 +212,7 @@
           </div>
           <div class="material-card-footer">
             <span>Formato: HTML | Tamanho: A4</span>
-            <a href="downloads/guia-rapido.html" class="download-button" download>
+            <a href="{{ url_for('static', filename='downloads/guia-rapido.html') }}" class="download-button" download>
               <i class="fas fa-download"></i> Baixar
             </a>
           </div>
@@ -326,7 +326,7 @@
             </div>
             <div class="resource-card-footer">
               <span>PDF | 25 páginas</span>
-              <a href="downloads/apostila-bitcoin-comerciantes.pdf" class="download-button" download>
+              <a href="{{ url_for('static', filename='downloads/apostila-bitcoin-comerciantes.pdf') }}" class="download-button" download>
                 <i class="fas fa-download"></i> Baixar
               </a>
             </div>
@@ -344,7 +344,7 @@
             </div>
             <div class="resource-card-footer">
               <span>PDF | 18 páginas</span>
-              <a href="downloads/manual-lightning.pdf" class="download-button" download>
+              <a href="{{ url_for('static', filename='downloads/manual-lightning.pdf') }}" class="download-button" download>
                 <i class="fas fa-download"></i> Baixar
               </a>
             </div>
@@ -362,7 +362,7 @@
             </div>
             <div class="resource-card-footer">
               <span>PDF | 15 páginas</span>
-              <a href="downloads/guia-carteiras.pdf" class="download-button" download>
+              <a href="{{ url_for('static', filename='downloads/guia-carteiras.pdf') }}" class="download-button" download>
                 <i class="fas fa-download"></i> Baixar
               </a>
             </div>
@@ -380,7 +380,7 @@
             </div>
             <div class="resource-card-footer">
               <span>PowerPoint | 30 slides</span>
-              <a href="downloads/apresentacao-bitcoin.pptx" class="download-button" download>
+              <a href="{{ url_for('static', filename='downloads/apresentacao-bitcoin.pptx') }}" class="download-button" download>
                 <i class="fas fa-download"></i> Baixar
               </a>
             </div>
@@ -398,7 +398,7 @@
             </div>
             <div class="resource-card-footer">
               <span>MP4 | 10 minutos</span>
-              <a href="downloads/tutorial-pagamentos.mp4" class="download-button" download>
+              <a href="{{ url_for('static', filename='downloads/tutorial-pagamentos.mp4') }}" class="download-button" download>
                 <i class="fas fa-download"></i> Baixar
               </a>
             </div>
@@ -415,7 +415,7 @@
             </div>
             <div class="resource-card-footer">
               <span>Excel | Planilha interativa</span>
-              <a href="downloads/planilha-controle.xlsx" class="download-button" download>
+              <a href="{{ url_for('static', filename='downloads/planilha-controle.xlsx') }}" class="download-button" download>
                 <i class="fas fa-download"></i> Baixar
               </a>
             </div>
@@ -457,7 +457,7 @@
       });
     }
   </script>
-  <script src="js/load-header-and-footer.js"></script>
+  <script src="{{ url_for('static', filename='js/load-header-and-footer.js') }}"></script>
   
 </body>
 

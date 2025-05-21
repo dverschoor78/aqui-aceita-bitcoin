@@ -7,8 +7,8 @@
   <title>Aceita Bitcoin? - Clube BR⚡LN</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="/css/btcmap-flags.css">
-  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/btcmap-flags.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
 </head>
 
 <body>
@@ -38,7 +38,7 @@
             Cadastre seu negócio agora e vamos ajudá-lo a colocar sua empresa no mapa do Bitcoin!
           </div>
           <div class="d-flex justify-content-center mt-3">
-            <a href="cadastro" class="cta-button">
+            <a href="{{ url_for('serve_cadastro') }}" class="cta-button">
               <i class="fas fa-arrow-right"></i> Cadastrar agora
             </a>
           </div>
@@ -54,7 +54,7 @@
             Configure uma carteira Bitcoin segura para receber pagamentos instantaneamente.
           </div>
           <div class="d-flex justify-content-center mt-3">
-            <a href="carteiras" class="cta-button">
+            <a href="{{ url_for('serve_carteiras') }}" class="cta-button">
               <i class="fas fa-arrow-right"></i> Criar carteira
             </a>
           </div>
@@ -70,7 +70,7 @@
             Exiba o adesivo, divulgue nas redes sociais "Aceita Bitcoin?" e comece a receber pagamentos.
           </div>
           <div class="d-flex justify-content-center mt-3">
-            <a href="materiais" class="cta-button">
+            <a href="{{ url_for('serve_materiais') }}" class="cta-button">
               <i class="fas fa-arrow-right"></i> Obter materiais
             </a>
           </div>
@@ -93,7 +93,7 @@
       <h3>Estabelecimentos em Destaque</h3>
       <div class="establishment-cards">
         <div class="establishment-card">
-          <div class="establishment-image" style="background-image: url('img/logos/fredericas.jpg')"></div>
+          <div class="establishment-image" style="background-image: url('{{ url_for('static', filename='img/fredericas.jpg') }}')"></div>
           <div class="establishment-details">
             <h4 class="establishment-name">Frederica's Koffiehuis</h4>
             <span class="establishment-category">Café</span>
@@ -113,7 +113,7 @@
         </div>
 
         <div class="establishment-card">
-          <div class="establishment-image" style="background-image: url('img/logos/dr-adrian-gomez.jpg')"></div>
+          <div class="establishment-image" style="background-image: url('{{ url_for('static', filename='img/dr-adrian-gomez.jpg') }}')"></div>
           <div class="establishment-details">
             <h4 class="establishment-name">Dr. Adrian Gómez Collantes</h4>
             <span class="establishment-category">Serviços de Saúde</span>
@@ -136,7 +136,7 @@
         </div>
 
         <div class="establishment-card">
-          <div class="establishment-image" style="background-image: url('img/logos/deltad.jpg')"></div>
+          <div class="establishment-image" style="background-image: url('{{ url_for('static', filename='img/deltad.jpg') }}')"></div>
           <div class="establishment-details">
             <h4 class="establishment-name">DeltaD Engenharia e Locações</h4>
             <span class="establishment-category">Aluguel</span>
@@ -210,10 +210,10 @@
   <div id="footer-placeholder"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="js/index_dynamic.js"></script>
-  <script src="js/quickForm.js"></script>
-  <script src="js/btcmap-flag-manager.js"></script>
-  <script src="js/load-header-and-footer.js"></script>
+  <script src="{{ url_for('static', filename='js/index_dynamic.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/quickForm.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/btcmap-flag-manager.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/load-header-and-footer.js') }}"></script>
 
 </body>
 

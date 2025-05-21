@@ -1,16 +1,16 @@
 <header>
   <div class="header-container">
     <div class="logo">
-      <img src="img/logos/logo.png" alt="Logo Aceita Bitcoin?" style="width: 100px; height: auto; align-self: center;">
+      <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo Aceita Bitcoin?" style="width: 100px; height: auto; align-self: center;">
     </div>
     <nav>
       <ul>
-        <li><a href="templates/index.html">Início</a></li>
-        <li><a href="templates/sobre.html">Sobre nós</a></li>
-        <li><a href="templates/carteiras.html">Carteiras Bitcoin</a></li>
-        <li><a href="templates/cadastro.html">Cadastre seu estabelecimento</a></li>
-        <li><a href="templates/materiais.html">Materiais</a></li>
-        <li><a href="templates/estabelecimentos.html">Estabelecimentos</a></li>
+        <li><a href="{{ url_for('serve_index') }}">Início</a></li>
+        <li><a href="{{ url_for('serve_sobre') }}">Sobre nós</a></li>
+        <li><a href="{{ url_for('serve_carteiras') }}">Carteiras Bitcoin</a></li>
+        <li><a href="{{ url_for('serve_cadastro') }}">Cadastre seu estabelecimento</a></li>
+        <li><a href="{{ url_for('serve_materiais') }}">Materiais</a></li>
+        <li><a href="{{ url_for('serve_estabelecimentos') }}">Estabelecimentos</a></li>
       </ul>
     </nav>
   </div>

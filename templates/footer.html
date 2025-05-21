@@ -13,12 +13,12 @@
     <div class="footer-section">
       <h4>Links Úteis</h4>
       <ul>
-        <li><a href="templates/index.html">Início</a></li>
-        <li><a href="templates/sobre.html">Sobre nós</a></li>
-        <li><a href="templates/carteiras.html">Carteiras Bitcoin</a></li>
-        <li><a href="templates/cadastro.html">Cadastre o estabelecimento</a></li>
-        <li><a href="templates/materiais.html">Materiais</a></li>
-        <li><a href="templates/estabelecimentos.html">Estabelecimentos</a></li>
+        <li><a href="{{ url_for('serve_index') }}">Início</a></li>
+        <li><a href="{{ url_for('serve_sobre') }}">Sobre nós</a></li>
+        <li><a href="{{ url_for('serve_carteiras') }}">Carteiras Bitcoin</a></li>
+        <li><a href="{{ url_for('serve_cadastro') }}">Cadastre o estabelecimento</a></li>
+        <li><a href="{{ url_for('serve_materiais') }}">Materiais</a></li>
+        <li><a href="{{ url_for('serve_estabelecimentos') }}">Estabelecimentos</a></li>
       </ul>
     </div>
     <div class="footer-section">
