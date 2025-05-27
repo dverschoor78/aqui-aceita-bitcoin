@@ -1,3 +1,5 @@
 *.db
 *.log
 .github
+*services/
+*venv/
