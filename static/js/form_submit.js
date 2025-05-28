@@ -46,6 +46,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     goToHomeBtn.addEventListener('click', function() {
-        window.location.href = "index.html";
+        window.location.href = "/";
     });
 });
