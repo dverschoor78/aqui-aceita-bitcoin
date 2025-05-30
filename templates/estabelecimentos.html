@@ -40,7 +40,7 @@
           const col = document.createElement('div');
           col.className = 'col-md-4';
 
-          const imgPath = est.logo_filename ? `static/${est.logo_filename}` : '{{ url_for("static", filename="img/default.png") }}';
+          const imgPath = est.logo_filename ? `static/logos/${est.logo_filename}` : '{{ url_for("static", filename="static/img/logo_aceita_bitcoin_pino1_wht.png") }}';
 
           col.innerHTML = `
             <div class="establishment-card">
