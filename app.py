@@ -11,6 +11,7 @@ app = Flask(__name__)
 CORS(app)
 
 DB_FILE_PATH = dotenv.get_key('.env', 'DB_FILE_PATH') or 'database.db'
+PORT = int(dotenv.get_key('.env', 'PORT') or 5000)
 UPLOAD_FOLDER = os.path.join(app.static_folder, 'logos')
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
@@ -125,4 +126,4 @@ def listar_estabelecimentos():
 
 if __name__ == '__main__':
     init_db()
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=PORT, debug=True)
